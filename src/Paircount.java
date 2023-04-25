@@ -1,6 +1,6 @@
 public class Paircount {
 //    Input 1:
-//
+//bruteforce solution-o(n^2)
 //    A = [1,2,3,2,1]
 //    B = 5
 //    Input 2:
