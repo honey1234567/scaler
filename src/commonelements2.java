@@ -24,7 +24,7 @@
       Iterator i = c.iterator();
       int j = 0;
       while(i.hasNext()){
-          d[j++] = (int)i.next();
+          d[j++] = (int)i.next();//coz next returns type of object
       }
     
    
