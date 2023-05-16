@@ -54,7 +54,7 @@ public class PowerFunction {
     }
 //we will multiply at each step as a^2 mod n = (a*a)mod n=(a mod n * a mod n)mod n
     //doing mod on small value is less computive task that's why we used formula
-    //use bitwise operator coz it takes less time than multiplication and division
+    //use bitwise operator coz it takes less time than multiplication and division operator
    // here complexity is o(logb)in binary search  else if u do simply multiolication then o(b)
     //we ttok long coz if a,b,c takes higher int range then int result can't be fitted with answer,so res is long
 
