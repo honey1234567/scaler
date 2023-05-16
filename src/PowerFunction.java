@@ -48,7 +48,7 @@ public class PowerFunction {
                 res = (res % c * a % c) % c;//last 2/2 is 1 even for even no. so control goes here and u'll get latest value
             }
             a = (a % c* a % c)%c;
-            b=b>>1;//b/2
+            b=b>>1;//b/2(result is int)
         }
         return res;
     }
