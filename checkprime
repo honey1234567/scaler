@@ -1,0 +1,64 @@
+Given a number A. Return 1 if A is prime and return 0 if not. 
+
+Note : 
+The value of A can cross the range of Integer.
+range of int is till 10^9
+1 <= A <= 1012
+When is a number, Prime?  
+1. When a number is not divisible by any integer other than 1 and itself.
+OR
+2. When number of factor count for any number is exactly 2.
+When searching for prime numbers, be careful of overflows in the problem.Use appropriate typecasting or datatypes.
+
+Prime Number : If Number is divisible by 1 and itself where (N > 2) then number is Prime Number. 
+
+1. If Number is 1, it is not prime because 1 is not a prime number. 
+
+2. Now, for any number A, if is divisible by any number between 2 to A-1, that means it is not a prime number 
+
+3. But instead iteration from 2 to A-1, we will iterate from 2 to sqrt(A) [Think why?]. 
+
+4. While we are iterating, if at any moment a number can divide A, that means A is not a prime number. 
+
+5. After successful Iteration we can say number A is prime Number
+
+Theirs
+public class Solution {
+    public int solve(Long A) {
+        if(A==1)return 0;
+        for(long i=2;i*i<=A;i++){
+            if(A%i==0)return 0;
+        }
+    return 1;
+    }
+}
+
+
+MINE
+public class Solution {
+    public int solve(long A) {
+        if(countfactor(A) == 2){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    public int countfactor(long A) {
+        int count = 0;
+        for(int i =1;i<=A;i++){
+            if(A%i == 0 && i<= A/i){
+              if(i== A/i){
+                  count += 1;
+              }if(i<A/i){
+                  count += 2;
+              }
+            }else if(i > A/i){
+                break;
+            }
+        }
+        return count;
+    }
+}
+
+
+
