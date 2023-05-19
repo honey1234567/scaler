@@ -1,3 +1,6 @@
 https://takeuforward.org/data-structure/set-matrix-zero/-explanation in delta blue nregister
+
 https://takeuforward.org/data-structure/program-to-generate-pascals-triangle/
-https://takeuforward.org/data-structure/find-minimum-number-of-coins/
+
+https://takeuforward.org/data-structure/find-minimum-number-of-coins/-greedy algo can fail sometime ex if coins are 1,2,6,5,9 and u need to take sum of 11 then greedy will select 9 and 2 but min is 6  and 5
+so DP usese all approach
