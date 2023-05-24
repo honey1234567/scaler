@@ -50,7 +50,7 @@ import java.util.HashMap;
 
 //logic-keep storing current sum(prefix sum) till current index in map and at each index find if map contains
 //currentsum-sum to find that means u got subarray
-//        https://youtu.be/XzwUBIkR9pA
+//        https://youtu.be/XzwUBIkR9pA-will only work for contigious subarray
 public class SubArraySumK {
     public int solve(int[] A, int sum) {
         int n = A.length;
