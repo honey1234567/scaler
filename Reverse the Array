@@ -1,0 +1,34 @@
+In reverse in range pass B and C as 0 and aray.len-1
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+  
+        public int[] solve(int[] A) {
+        //B and c are zero basefd index
+        int n = A.length;
+        for(int i = 0,j=n-1;i <= j;i++,j--){
+            swap(A,i,j);
+        }
+        return A;
+    }
+    public void swap(int[] A,int i,int j){
+        int temp= A[i];
+        A[i] = A[j];
+        A[j] = temp;
+    }
+}
+/theirs
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int[] solve(final int[] A) {
+        int n = A.length;
+        int []ans = new int[n];
+        for(int i = 0; i < n; i++) ans[i] = A[n - i - 1];
+        return ans;
+    }
+}
+
+Let N be the size of the input array.
+First of all, initialize an output array of size equal to N.
+Then, iterate over the input array given in the function.
+Inside the loop make output[i] = input[N-i-1], where N is the size of the input array.
+After that, just return the output array from the function.
