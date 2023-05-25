@@ -68,3 +68,9 @@ public class Solution {
     	return A.length - max_count;
     }
 }
+We need to count the number of elements in the array 
+that are not equal to the maximum value of the array.
+We can traverse the array and get this count.
+
+Time Complexity : O(N)
+Space Complexity : O(1)
