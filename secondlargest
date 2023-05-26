@@ -1,0 +1,49 @@
+First, we iterate over each element in the list and find the largest element. Let’s say max_elem.
+Then, we again iterate over each element in the list using a for loop and find the largest element, but we also check if that element is equal to max_elem, if it is we skip it.
+
+public class Solution {
+    public int solve(int[] A) {
+        int index = 0, n = A.length;
+        // This will give us the maximum element of A
+        for(int i = 1; i < n; i++){
+            if(A[i] > A[index]){
+                index = i;
+            }
+        }
+        
+        int ans = -1;
+        // This will give us maximum element of A which is less than A[index]
+        for(int i = 0; i < n; i++){
+            if(A[i] != A[index]){
+                ans = Math.max(ans, A[i]);
+            }
+        }
+        
+        return ans;
+    }
+}
+
+//mine
+public class Solution {
+    public int solve(int[] A) {
+         int firstLargest = Integer.MIN_VALUE;
+    int secondLargest = Integer.MIN_VALUE;
+
+    for(int i =0;i<A.length;i++){
+        int f= firstLargest;
+        firstLargest = Math.max(firstLargest,A[i]);
+        if(f == firstLargest && A[i] != firstLargest){//if first largest is not changed currently and 
+        //current element is not equal to firstlargest then update second largest
+            secondLargest = Math.max(secondLargest,A[i]);
+        }
+        if(f != firstLargest ){//if firstlargest is changed then make fisrtlargest to secondlargest
+            secondLargest = f;
+        }
+
+    }
+    return secondLargest == Integer.MIN_VALUE ? -1:secondLargest;
+    }
+   
+}
+
+///////////
