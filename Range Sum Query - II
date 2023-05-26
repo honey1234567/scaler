@@ -38,7 +38,13 @@ Explanation 2:
 
 The sum of all elements of A[0 ... 0] = 2 = 2.
 The sum of all elements of A[1 ... 2] = 2 + 2 = 4.
+For every query we traverse the array from L to R 
+and calculate the sum in every case.
 
+Time Complexity : O(N*M)
+Space complexity : O(M)
+
+as contraints are less so  bruteforce will pass in this case
 
 
 ////////////////////BRUTEFORCE//////////////////////
