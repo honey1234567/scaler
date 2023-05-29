@@ -1,0 +1,20 @@
+Make answer  of prefix sum in same aaray
+dont create extra space
+public class Solution {
+    public int[] solve(int[] A) {
+       
+             
+        for(int i = 1;i<A.length;i++){
+
+          A[i] = A[i-1] + A[i];
+        }
+        return A;
+    }
+}
+We will traverse from left to right of the array.
+For the leftmost element, we leave it as it as, and 
+for the other elements we add to the element on the 
+left to it. This will form the prefix sum array
+
+Time Complexity : O(N)
+Space Complexity : O(1)
