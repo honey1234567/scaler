@@ -1,0 +1,103 @@
+You are given an integer array A of length N.
+You are also given a 2D integer array B with dimensions M x 2, where each row denotes a [L, R] query.
+For each query, you have to find the sum of all elements from L to R indices in A (0 - indexed).
+More formally, find A[L] + A[L + 1] + A[L + 2] +... + A[R - 1] + A[R] for each query.
+
+
+
+Problem Constraints
+1 <= N, M <= 105
+1 <= A[i] <= 109
+0 <= L <= R < N
+
+
+Input Format
+The first argument is the integer array A.
+The second argument is the 2D integer array B.
+
+
+Output Format
+Return an integer array of length M where ith element is the answer for ith query in B.
+
+
+Example Input
+Input 1:
+A = [1, 2, 3, 4, 5]
+B = [[0, 3], [1, 2]]
+Input 2:
+
+A = [2, 2, 2]
+B = [[0, 0], [1, 2]]
+
+
+Example Output
+Output 1:
+[10, 5]
+Output 2:
+
+[2, 4]
+
+
+Example Explanation
+Explanation 1:
+The sum of all elements of A[0 ... 3] = 1 + 2 + 3 + 4 = 10.
+The sum of all elements of A[1 ... 2] = 2 + 3 = 5.
+Explanation 2:
+
+The sum of all elements of A[0 ... 0] = 2 = 2.
+The sum of all elements of A[1 ... 2] = 2 + 2 = 4.
+
+
+/////////////////////////////////////////////////////////
+You need to calculate the sum of elements from l to r, again and again, for different values of l and r.
+So, can you use prefix sum to optimise this.
+So, first create a prefixSum[], where ith index will store sum of elements from 0 to ith index of given array.
+Then, use this prefixSum[] to find the answer for every value of l and r.
+
+
+Careful -
+Since N can be equal to 10^5, and array elements can be as large as 10^9.
+so if all elements can be 10^9
+If you calculate the sum of all such elements, the sum can go upto 10^9*10^5 = 10^14. which is out of int range so make pref array long type
+So, choose the data type of sum and prefixSum[] carefully.
+/////////////////////
+We have to find a way to optimize the time complexity of answering our query.
+We can do this by creating an auxiliary array pref,
+where pref[i] is the sum of all elements from the beginning to the ith element.
+
+We can easily create the pref array using the following equation:
+pref[i] = pref[i - 1] + A[i]
+
+Now, we can answer all our queries in O(1).
+The answer to each query will be pref[R] - pref[L - 1].
+
+Time Complexity: O(N)
+Space Complexity: O(N)
+
+Refer to the complete solution for more details.
+/////////////////////////////////////////////////////
+public class Solution {
+    public long[] rangeSum(int[] A, int[][] B) {
+         long res[] = new long[B.length];
+         long[] prefix = new long[A.length];
+         prefix[0] = A[0];
+            for(int i = 1;i<A.length;i++){
+
+          prefix[i] = prefix[i-1] + A[i];
+        }
+         for(int block = 0;block<B.length;block++){
+             int firstRange = B[block][0];
+             int secondRange = B[block][1];
+             long sum = 0;
+             if(firstRange != 0)
+             sum = prefix[secondRange] - prefix[firstRange-1];//as prefix array is long so toavoid typecasting
+             else
+             sum = prefix[secondRange];
+
+             res[block] = sum;//make res[] also long as sum is of type long coz conversion from long to int is error ,u have to do it explicitly
+         }
+         return res;
+    }
+}
+
+ 
