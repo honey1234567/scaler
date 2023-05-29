@@ -1,0 +1,13 @@
+We have to traverse over the whole array and calculate each element of the prefix sum array
+with the recurrence pre[i] = pre[i - 1] + a[i].
+So, the time complexity of creating the prefix sum array is O(N).
+
+
+The original array is [-2, 6, -3, 4, -3].
+The sum in the range [1, 2] is 3.
+
+The original array is [-2, 6, -3, 4, -3].
+The sum in the range [2, 4] is -2.
+
+The original array is [-2, 6, -3, 4, -3].
+The sum in the range [0, 2] is 1.
