@@ -1,0 +1,38 @@
+Given an array of integers A, find and return the product array of the same size where the ith element of the product array will be equal to the product of all the elements divided by the ith element of the array.
+
+Note: It is always possible to form the product array with integer (32 bit) values. Solve it without using the division operator.
+
+
+We will have a prefix array pref[] where pref[i] will store the 
+multiplication of all the elements in the prefix of the array till
+i-th position. Similar we will have a suffix array suff[].
+Now for the i-th element, we can find the multiplication of all the 
+elements to it's left from the pref[] array and that in the right side
+from the suff[] array
+
+Time Complexity : O(N)
+Space Complexity : O(N)
+
+res[i] = prefix[i-1] * suffix[i + 1];
+
+public class Solution {
+    public int[] solve(int[] A) {
+        int[] prefix = new int[A.length];
+        int[] suffix = new int[A.length];
+        int[] res = new int[A.length]; 
+        prefix[0] = A[0];
+        for(int i=1;i<A.length;i++){
+           prefix[i] = prefix[i-1] * A[i];
+        }
+        suffix[A.length-1] = A[A.length-1];
+        for(int i=A.length-2;i>=0;i--){
+           suffix[i] = suffix[i+1] * A[i];
+        }
+        res[0] = suffix[1];
+        res[A.length-1] = prefix[A.length-2];
+      for(int i=1;i<A.length-1;i++){
+           res[i] = prefix[i-1] * suffix[i + 1];
+        }
+        return res;
+    }
+}
