@@ -1,0 +1,98 @@
+Given an integer A, generate a square matrix filled with elements from 1 to A2 in spiral order and return the generated square matrix.
+
+
+
+Problem Constraints
+1 <= A <= 1000
+
+
+
+Input Format
+First and only argument is integer A
+
+
+Output Format
+Return a 2-D matrix which consists of the elements added in spiral order.
+
+
+
+Example Input
+Input 1:
+
+1
+Input 2:
+
+2
+Input 3:
+
+5
+
+
+Example Output
+Output 1:
+
+[ [1] ]
+Output 2:
+
+[ [1, 2], 
+  [4, 3] ]
+Output 2:
+
+[ [1,   2,  3,  4, 5], 
+  [16, 17, 18, 19, 6], 
+  [15, 24, 25, 20, 7], 
+  [14, 23, 22, 21, 8], 
+  [13, 12, 11, 10, 9] ]
+  
+  
+  /////////////////////////////
+  Take a matrix of dimensions A*A and initialise r = 0, col = 0 and count = 1
+
+Start iterating on the outermost frame. To iterate it,
+iterate from left to right A-1 times, then
+iterate from top to bottom A-1 times, then
+iterate from right to left A-1 times, then
+iterate from bottom to top A-t times. And keep storing the values accordingly.
+
+Now, in order to move to next inner frame, A will be decremented by 2, r and c will be incremented by 1.
+
+In this way, keep iterating on all the frames.
+
+Time Complexity : O(A^2)
+////////////////////
+public class Solution {
+    public int[][] generateMatrix(int A) {
+        int elements = 1;
+        int res[][] = new int[A][A];
+        int row = 0;
+        int col  = 0;
+        int n = A;
+        while(n>1){
+            for(int i=1;i<=n-1;i++){
+                res[row][col] = elements;
+                elements++;
+                col++;
+            }
+               for(int i=1;i<=n-1;i++){
+                res[row][col] = elements;
+                elements++;
+                row++;
+            }
+               for(int i=1;i<=n-1;i++){
+                res[row][col] = elements;
+                elements++;
+                col--;
+            }
+               for(int i=1;i<=n-1;i++){
+                res[row][col] = elements;
+                elements++;
+                row--;
+            }
+            row++;
+            col++;
+            n=n-2;
+        }
+        if(n==1) res[row][col] = elements;
+        return res;
+    }
+}
