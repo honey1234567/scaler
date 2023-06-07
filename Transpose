@@ -1,4 +1,5 @@
 public class Solution {
+//coz we have to put result in different matrix so we didnt only take lower triangle
     public int[][] solve(int[][] A) {
         int n = A.length;
         int  m = A[0].length;
