@@ -40,6 +40,12 @@ For Input 1:
 The subarray for the first query is [1, 2, 3] whose sum of even indices is 4.
 The subarray for the second query is [2, 3, 4, 5] whose sum of even indices is 8.
 //////////////////
+Create a prefix array pref[] where pref[i+1] will store the sum of numbers with even indices in the subarray A[0…i]. 
+Now, the sum of numbers with even indices in the range [L, R] can be easily calculated in O(1) as pref[R + 1] – pref[L].
+
+Time Complexity : O(N + Q)
+Space Complexity : O(N + Q)
+///////////////////
 public class Solution {
     public int[] solve(int[] A, int[][] B) {
         int query = B.length;
