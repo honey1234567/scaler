@@ -59,10 +59,12 @@ public class SubArraySumK {
         for (int i = 0; i < n; i++) {
             currentSum = currentSum + A[i];
             int b = currentSum - sum;
-            if (map.get(b) != null) {
+
+
+           if (map.get(b) != null || b == 0) {
                 return 1;
             }
-            map.put(i, map.getOrDefault(i - 1, 0) + A[i]);
+            map.put(currentSum,i);
         }
         return 0;
     }
