@@ -1,0 +1,45 @@
+Given an array A of N integers. Sort the array in increasing order of the value at the tens place digit of every number.
+
+If a number has no tens digit, we can assume value to be 0.
+If 2 numbers have same tens digit, in that case number with max value will come first
+Solution should be based on comparator.
+
+public class Solution {
+    public int[] solve(int[] A) {
+             Integer res[] = new Integer[A.length];
+        for(int i = 0; i < A.length; i++) {
+            res[i] = A[i];
+        }
+     Arrays.sort(res, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer f, Integer s) {
+                int a =(f/10)%10;
+                int b = (s/10)%10;
+              if(a < b) return -1;
+              if(a > b) return 1;
+              if(a == b) {
+                  if(f<s) return 1;
+                  if(f>s) return -1;
+                  return 0;
+              };
+              return -1;
+            }
+        });
+            for(int i = 0; i < res.length; i++) {
+            A[i] = res[i];
+        }
+        return A;
+    }
+}
+////////////////theirs
+        Collections.sort(A, new Comparator< Integer >(){
+            @Override
+            public int compare(Integer val1, Integer val2) {
+                Integer tens_digit1 = (val1 / 10 ) % 10;
+                Integer tens_digit2 = (val2 / 10 ) % 10;
+                if (tens_digit1 == tens_digit2){
+                    return val2 - val1;
+            	}
+                return tens_digit1 - tens_digit2;
+            }    
+        });
