@@ -1,0 +1,75 @@
+Q] A spider is trying to build a web for itself. The web built by it doubles every day.
+
+If the spider entirely built the web in 15 days, how many days did it take for the spider to build 25% of the web?
+ANS-
+Given that Spider doubles its work every day let’s figure out the amount of work done till the 14th day ( a day before 15 days ).
+Let’s say the work done till the 14th day is X. Spider doubled the work done till the 14th on 15th. On day 15th, Spider did X more work.
+
+We know that 2X = 100% work.
+Which means X = 50% work.
+
+The Spider built 50% of the web till the 14th day.
+If you extend it, the Spider did 25% of the work till the 13th day.
+
+Q) In a country where everyone wants a boy, each family continues having babies till they have a boy. After a long time, what is the proportion of boys to girls in the country? (Assuming probability of having a boy or a girl is the same) > Round off your answer to two decimal places and output the answer as I.xx where I is the integer part of your answer, and xx is the first two decimal places of the rounded-off answer.
+We have been given that the probability of having a Girl or a Boy is the same i.e.
+Probability(Boy) = 0.5, Probability(Girl) = 0.5
+
+Now considering cases from the start (we will stop as soon as a boy is born).
+
+B (First child boy, no need to have more babies)
+
+GB (First child girl, second boy) & so on…
+GGB
+GGGB
+GGGGB
+GGGGGB
+.
+.
+.
+GGGGGG…(N - 1 times) then Boy
+
+Success = Boy being born
+
+Now for success probability, we need to calculate probability until the boy is born.
+
+First Case: Total Probability = Probability(Boy) = 1/2
+Second Case: Total Probability = Probability(1 Girl) * Probability(Boy) = 1/2 * 1/2 = 1/4 = 1/2^2
+Third Case: Total Probability = Probability(2 Girls) * Probability(Boy) = 1/2 * 1/2 * 1/2 = 1/8 = 1/2^3
+Fourth Case: Total Probability = Probability(3 Girls) * Probability(Boy) = 1/2 * 1/2 * 1/2 * 1/2 = 1/16 = 1/2^4
+.
+.
+.
+.
+so on
+
+Adding all cases will give us the overall success probability after a long time = Answer
+
+1/2^1 + 1/2^2 + 1/2^3 + 1/2^4…infinite times
+
+Clearly, its a GP
+
+Sum of infinite terms of GP = first term/(1 - common ratio)
+                                                           = (1/2) / (1 - 1/2)
+                                                           = 1 (Answer)
+
+NOTE: Write the answer as 1.00 as per the question requirements
+
+Q) One hundred people are standing in a circle in an order 1 to 100.
+
+No.1 has a sword. He kills the next person (i.e., no. 2) and gives the sword to the next (i.e., no. 3). All person does the same until only one survives.
+
+Which number survives at last?
+
+1. Bring the N (Total no'' of alive persons) to closest power of 2.
+2. Then find the no'' of persons were killed (i.e N-closest power of 2 value).
+3. After finding the no'' of kills then we have to find the final person who is alive by using formula 2*i+1
+    (where i is no'' of kills).
+
+Example:
+ Let us consider the given alive people is N=100.
+Here the closest power of 2 is 64.
+Then finding the no'' of kills i= 100-64 =36.
+By substituting these values into above formula, i.e 2*i+1
+2*36+1=73.
+:. Hence for all 100 people the only person who alive in the final is 73.
