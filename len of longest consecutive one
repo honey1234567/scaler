@@ -87,6 +87,7 @@ public class Solution {
             if (s.charAt(i) == '1')
                 cnt_one++;
         }
+        if(cnt_one == n) return n;
         // To store cumulative 1's
         int left[] = new int[n];
         int right[] = new int[n];
@@ -115,11 +116,20 @@ public class Solution {
         }
     
         int cnt = 0, max_cnt = 0;
-        for(int i=0; i<n; ++i )
-        max_cnt=Math.max(max_cnt,Math.max(right[i],left[i]));
-        for (int i = 1; i < n - 1; i++) {
+        
+        for (int i = 0; i < n ; i++) {
             if (s.charAt(i) == '0') {
-                int sum = left[i - 1] + right[i + 1];
+                int sum=0;
+                if(i==0 && i+1<=n-1){//first index
+                   sum = right[i + 1];
+                }else if(i+1>n-1 && i-1 >=0){//last index
+                    sum = left[i - 1];
+                }else if(n==1){
+                    sum=right[i];//or right[i]
+                }else{
+                     sum = left[i - 1] + right[i + 1];
+                }
+                
     
                 if (sum < cnt_one)
                     cnt = sum + 1;
@@ -139,3 +149,4 @@ public class Solution {
         
     }
 }
+
