@@ -1,0 +1,111 @@
+Given a string A of size N, find and return the longest palindromic substring in A.
+
+Substring of string A is A[i...j] where 0 <= i <= j < len(A)
+
+Palindrome string:
+A string which reads the same backwards. More formally, A is palindrome if reverse(A) = A.
+
+Incase of conflict, return the substring which occurs first ( with the least starting index).
+
+
+
+Problem Constraints
+1 <= N <= 6000
+
+
+
+Input Format
+First and only argument is a string A.
+
+
+
+Output Format
+Return a string denoting the longest palindromic substring of string A.
+
+
+
+Example Input
+Input 1:
+A = "aaaabaaa"
+Input 2:
+A = "abba
+
+
+Example Output
+Output 1:
+"aaabaaa"
+Output 2:
+"abba"
+
+
+Example Explanation
+Explanation 1:
+We can see that longest palindromic substring is of length 7 and the string is "aaabaaa".
+Explanation 2:
+We can see that longest palindromic substring is of length 4 and the string is "abba".
+
+
+
+
+
+/////////////////////////////////////
+We observe that a palindrome mirrors around its center. Therefore, a palindrome can be expanded from its center, and there are only 2N-1 such centers.
+
+You might be asking why there are 2N-1 but not N centers?
+
+The reason is that the center of a palindrome can be in between two letters.
+
+Such palindromes have even number of letters (such as “abba”) and their center are between the two ‘b’s.
+public class Solution {
+    public static int start=-1;
+    public static int end = -1;
+    public static String longestPalindrome(String A) {
+        int n = A.length();
+        int s=0;
+        int e=0;
+        int ans = Integer.MIN_VALUE;
+        String temp = null;
+        //ist loop is for palindrome with odd length;
+        for(int i =0;i<n;i++){
+            //1 center fix(mid point falls on a char)
+            s=i;
+            e=i;
+           if(ans < findmax(A,s,e)){
+               ans = findmax(A,s,e);
+             temp = A.substring(start,end+1);
+           }
+        }
+         //ist loop is for palindrome with even length;
+        for(int i =0;i<n;i++){
+            //2 center fix(mid point falls between ntwo character)
+            s=i;
+            e=i+1;
+           if(ans < findmax(A,s,e)){
+               ans = findmax(A,s,e);
+             temp = A.substring(start,end+1);
+           }
+        }
+        if(temp != null){
+            return temp;
+        }
+        return null;
+    }
+    public static int findmax(String A,int s,int e){
+        int f=0;
+        while(s>=0 && e <= A.length()-1 && A.charAt(s) == A.charAt(e)){
+            f=1;
+            s--;
+            e++;
+        }
+        if(f ==1){
+        s++;
+        e--;
+        start =s;
+        end = e;
+         return (e-s+1);
+        }
+        
+    return Integer.MIN_VALUE;
+       
+    }
+}
