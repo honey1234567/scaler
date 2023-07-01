@@ -1,0 +1,33 @@
+Given an array A of N integers.
+
+Find the count of the subarrays in the array which sums to zero. Since the answer can be very large, return the remainder on dividing the result with 109+7
+
+//////////////////////////////////////////////////////////////
+public class Solution {
+    public int solve(int[] A) {
+         int  n =A.length;
+       HashMap<Long,Integer> hm = new HashMap<>();
+       long currsum = 0;
+    int Mod = 1000000007;
+    long c=0;
+    hm.put(0L,1);
+       //when hard test case failed due to large input siz e then try with overflow issue
+       //Since there can be at max 10^5 elements and all the elements can be 10^9. So, in worst case sum be 10^14.
+//Please select the data type carefully for storing the sum of elements.
+       for(int i=0;i<n;i++){
+            currsum = (currsum  + A[i]) ;
+            if(hm.containsKey(currsum)){
+                c = (c%Mod+hm.get(currsum)%Mod)%Mod;
+                 int nf = hm.get(currsum)+1;
+            hm.put(currsum,nf);
+            } 
+           
+     
+          else{
+              hm.put(currsum,1);
+          }
+       }
+     
+       return (int)c%Mod;
+    }
+}
