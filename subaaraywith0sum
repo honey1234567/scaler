@@ -1,0 +1,31 @@
+Given an array of integers A, find and return whether the given array contains a non-empty subarray with a sum equal to 0.
+
+If any given array contains a sub-array with sum zero return 1, else return 0.
+
+solution
+The idea is to iterate through the array, and for every element A[i],
+calculate sum of elements from 0 to i (this can simply be done as sum += arr[i]).
+
+If the current sum has been seen before, then there is a zero-sum array.
+
+Hashing is used to store the sum values so that we can quickly store sum and
+find out whether the current sum is seen before or not.
+
+////////////////////////////////////
+public class Solution {
+    public int solve(ArrayList < Integer > A) {
+        HashSet < Long > set = new HashSet < Long > ();
+        long sum = 0;
+        set.add(sum);//put zero first for base case if sum becomes zero anytime then line 22 if will be true
+        for (int x: A) {
+            sum += x;
+            if (set.contains(sum)) return 1;
+            else {
+                set.add(sum);
+            }
+        }
+        return 0;
+    }
+}
+
+
