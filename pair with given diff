@@ -1,0 +1,36 @@
+Given an one-dimensional unsorted array A containing N integers.
+
+You are also given an integer B, find if there exists a pair of elements in the array whose difference is B.
+
+Return 1 if any such pair exists else return 0.
+
+
+
+Problem Constraints
+1 <= N <= 105
+-103 <= A[i] <= 103
+-105 <= B <= 105
+
+
+Input Format
+First argument is an integer array A of size N.
+
+Second argument is an integer B.
+
+
+
+Output Format
+Return 1 if any such pair exists else return 0.
+
+public class Solution {
+    public int solve(int[] A, int B) {
+        HashSet<Integer> set = new HashSet<>();
+        for(int i = 0 ; i < A.length ; i++){
+            if(set.contains(A[i] + B) || set.contains(A[i] - B)){
+                return 1;
+            }
+            set.add(A[i]);
+        }
+        return 0;
+    }
+}
