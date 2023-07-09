@@ -1,0 +1,55 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public int solve(ListNode A, int B) {
+       ListNode h = A;
+    while(B>0){
+         h=h.next;
+         B--;
+            
+       }
+       return h.val;
+    }
+}
+///////////////////////////////////////////////////
+Compare Linked List
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public int solve(ListNode A, ListNode B) {
+        ListNode h1 =A;
+        ListNode h2 = B;
+        int l1 = getSizeOfLL(h1);
+        int l2 = getSizeOfLL(h2);
+        if(l1 != l2) return 0;
+        if(l1 == l2){
+          while(l1 >0){
+              if(h1.val != h2.val) return 0;
+              h1=h1.next;
+              h2=h2.next;
+              l1--;
+          }
+        }
+        return 1;
+    }
+         public int getSizeOfLL(ListNode head){
+         int c= 1;
+         while(head.next != null){
+             c++;
+             head=head.next;
+         }
+         return c;
+     }
+}
