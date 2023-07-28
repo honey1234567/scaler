@@ -1,0 +1,44 @@
+Remove leading zero from finakl ans
+public class Solution {
+    public int[] plusOne(int[] A) {
+        int i=A.length-1;
+        while(i>=0){
+            if(A[i]>=0 && A[i]<=8 ){
+                A[i] = A[i]+1;
+                break;//no carry from back
+            }
+           A[i]=0;//prev no was 9
+           i--;
+        }
+
+        if(i==-1) {//there is a carry so add carry in ans coz u reached till end
+            int[] r = new int[A.length+1];
+            r[0]=1;//add carry first
+            int k=1;
+            for(int j=0;j<A.length;j++){
+               r[k++]=A[j];
+               return r;
+            }
+        }
+        //remove leading zero from ans
+        if(A[0]==0){
+           int zero=0;
+            ArrayList<Integer> l=new ArrayList<>();
+            for(int j=0;j<A.length;j++){
+               if(A[j] !=0){
+                   break;
+               }
+              zero++;
+            } 
+            //make ans array of length afetr minus zeros then copy from back
+           int[] r = new int[A.length-zero];
+           int k=A.length-zero-1;
+            for(int j=A.length-1;j>=zero;j--){
+               r[k--]=A[j];
+              
+            } 
+             return r;
+        }
+        return A; 
+    }
+}
