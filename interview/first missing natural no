@@ -1,8 +1,36 @@
+Note: numbers A[i]<=0 and A[i]>N ( N being the size of the array ) are not important to us since the missing positive integer will be in the range [1, N+1].
+
+The answer will be N+1 only if all of the elements of the array are exact one occurrence of [1, N].
+
+Creating buckets would have been an easy solution if using extra space was allowed.
+
+An array of size N initialized to 0 would have been created.
+
+For every value A[i], which lies in the range [1, N], its count in the array would have been incremented.
+
+Finally, traversing the array would help to find the first array position with value 0, and that will be our answer.
+However, usage of buckets is not allowed; can we use the existing array as a bucket somehow?
+
+Now, since additional space is not allowed either, the given array itself needs to be used to track it.
+
+It may be helpful to use the fact that the size of the set we are looking to track is [1, N]
+
+which happens to be the same size as the size of the array.
+
+This means we can use the array to track these elements.
+
+We traverse the array, and if A[i] is in [1, N] range, we try to put in the index of same value in the array.
+
+Time complexity : O(N)
+Auxiliary Space : O(1)
+
+
+
 public class Solution {
     public int firstMissingPositive(int[] A) {
         int  n =A.length;
         int[] r= new int[n];
- //at index i mark -1 by element i+1 and finally iterate the array from start that which index doesnt have -ve value and return that
+ 
          for(int i=0;i<n;i++){
              if(A[i] > 0 && A[i]-1<n){
              r[A[i]-1]=-1;
@@ -10,7 +38,7 @@ public class Solution {
 
          }
         for(int i=0;i<n;i++){
-            if(r[i]>=0) return i+1;
+            if(r[i]==0) return i+1;
         } 
         return n+1;
     }
