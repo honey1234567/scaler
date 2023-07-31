@@ -1,0 +1,17 @@
+public class Solution {
+    public int firstMissingPositive(int[] A) {
+        int  n =A.length;
+        int[] r= new int[n];
+ //at index i mark -1 by element i+1 and finally iterate the array from start that which index doesnt have -ve value and return that
+         for(int i=0;i<n;i++){
+             if(A[i] > 0 && A[i]-1<n){
+             r[A[i]-1]=-1;
+             }
+
+         }
+        for(int i=0;i<n;i++){
+            if(r[i]>=0) return i+1;
+        } 
+        return n+1;
+    }
+}
