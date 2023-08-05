@@ -1,0 +1,28 @@
+Given two Integers A, B. You have to calculate (A ^ (B!)) % (1e9 + 7).
+
+"^" means power,
+"%" means mod, and
+"!" means factorial.
+////////////////////////////////////////////////////
+public class Solution {
+    public int solve(int A, int B) {
+        int mod=1000000007;
+        long fact=fact(B);
+        long ans=fastexp(A,fact,mod);
+        return (int)ans;
+    }
+    public long fact(int B){
+         int mod=1000000007;
+        if(B==0) return 1;
+        return (B*fact(B-1))%(mod-1);
+    }
+     public long fastexp(int a ,long m,int mod){
+        if(m==0) return 1%mod;
+        if(m==1) return a%mod;
+        long ans=fastexp(a,m/2,mod);
+       // long hp=(ans%mod*ans%mod)%mod;
+        if((m%2) == 0) return (ans%mod *ans%mod)%mod;
+        else 
+         return (a%mod* ans%mod*ans%mod)%mod;
+    }
+}
