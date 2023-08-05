@@ -1,0 +1,18 @@
+Given two integers A and B. Find the value of A-1 mod B where B is a prime number and gcd(A, B) = 1.
+
+A-1 mod B is also known as modular multiplicative inverse of A under modulo B.
+////////////////////////////
+public class Solution {
+    public int solve(int A, int B) {
+        int ans=(int)(fastexp(A,B-2,B));
+       return ans<0?(ans+B):ans;//-ve ans then +MOD
+    }
+    public long fastexp(int a ,int m,int mod){
+        if(m==0) return 1%mod;
+        if(m==1) return a%mod;
+        long ans=fastexp(a,m/2,mod);
+        if((m%2) == 0) return (ans%mod *ans%mod)%mod;
+        else 
+         return (a%mod* ans%mod*ans%mod)%mod;
+    }
+}
