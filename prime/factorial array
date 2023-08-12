@@ -1,0 +1,122 @@
+Groot has an array A of size N. However, seeking excitement, Groot embarked on constructing an equally-sized array B with a unique definition for each of its elements:
+
+B[i] = factorial of A[i] for every i such that 1<= i <= N.
+
+Now Groot is interested in the total number of non-empty subsequences of array B such that every element in the subsequence has the same non-empty set of prime factors.
+
+Since the number can be huge, return it modulo 109 + 7.
+xample Input
+Input 1:
+
+ A = [2, 3, 2, 3]
+Input 2:
+
+ A = [2, 3, 4]
+
+
+Example Output
+Output 1:
+
+ 6
+Output 2:
+
+ 4
+
+
+Example Explanation
+Explanation 1:
+
+ Array B will be : [2, 6, 2, 6]
+ The total possible subsequences are 6 : [2], [2], [2, 2], [6], [6], [6, 6].
+Explanation 2:
+
+ Array B will be : [2, 6, 24]
+ The total possible subsequences are 4 : [2], [6], [24], [6, 24].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public class Solution {
+    public int solve(ArrayList<Integer> A) {
+        //see video and written solution
+        Collections.sort(A);
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<A.size();i++){
+            max=Math.max(max,A.get(i));
+        }
+        int mod=1000000007;
+      
+        ArrayList<Integer> primes = primes(max);
+        long total=0;
+        long s=0;
+
+        int j = 0, i = 0;
+        while(i < A.size() && j < primes.size()) {
+            // find the count of elements with same set of non-empty prime factors
+            int cnt = 0;
+            if(A.get(i) == 1){
+                i++;
+                continue;
+            }
+            while(i < A.size() && A.get(i) < primes.get(j)) {
+                i++;
+                cnt++;
+            }
+            long temp = fastexp(2, cnt,mod) - 1;
+            total = (total + temp) % mod;
+            j++;
+        }
+        if(i < A.size()){
+            long temp = fastexp(2, A.size() - i,mod) -1;
+            total = (total + temp) % mod;
+        }
+        return (int)total;
+        
+    }
+
+      public ArrayList<Integer> primes(int A) {
+        boolean[] primes = new boolean[A+1];
+        primes[0]=true;
+        primes[1]=true;
+        for(int i=2;i<=A;i++){
+           
+            if(primes[i]==false){
+           for(int j=i*2;j<=A;j += i){
+               
+               primes[j]=true;
+           }
+            }
+       
+        }
+        ArrayList<Integer> al = new ArrayList<Integer>();
+ 
+       for(int i=0;i<primes.length;i++){
+           if(primes[i]==false) al.add(i);
+       }
+        return al;
+    }
+        public int fastexp(int a ,int m,int mod){
+        if(m==0) return 1%mod;
+        if(m==1) return a%mod;
+        int ans=fastexp(a,m/2,mod);
+        if((m%2) == 0) return (ans%mod *ans%mod)%mod;
+        else 
+         return (a%mod* ans%mod*ans%mod)%mod;
+    }
+}
