@@ -1,0 +1,68 @@
+Problem Description
+Given an even number A ( greater than 2 ), return two prime numbers whose sum will be equal to the given number.
+
+If there is more than one solution possible, return the lexicographically smaller solution.
+
+If [a, b] is one solution with a <= b, and [c,d] is another solution with c <= d, then 
+[a, b] < [c, d], If a < c OR a==c AND b < d. 
+NOTE: A solution will always exist. Read Goldbach's conjecture.
+
+
+
+Problem Constraints
+4 <= A <= 2*107
+
+
+
+Input Format
+First and only argument of input is an even number A.
+
+
+
+Output Format
+Return a integer array of size 2 containing primes whose sum will be equal to given number.
+
+
+
+Example Input
+ 4
+
+
+Example Output
+ [2, 2]
+
+
+Example Explanation
+ There is only 1 solution for A = 4.
+///////////////////////////////////////////////////////////////////
+public class Solution {
+    public ArrayList<Integer> primesum(int A) {
+        //pair i and n-i repeats afetr sqrt
+         ArrayList<Integer> p=primes(A);
+         for(int p1:p){
+             if(p.contains(A-p1)) return new ArrayList(Arrays.asList(p1,A-p1));
+         }
+         return new ArrayList<>();
+    }
+         public ArrayList<Integer> primes(int A) {
+        boolean[] primes = new boolean[A+1];
+        primes[0]=true;
+        primes[1]=true;
+        for(int i=2;i<=A;i++){
+           
+            if(primes[i]==false){
+           for(int j=i*2;j<=A;j += i){
+               
+               primes[j]=true;
+           }
+            }
+       
+        }
+        ArrayList<Integer> al = new ArrayList<Integer>();
+ 
+       for(int i=0;i<primes.length;i++){
+           if(primes[i]==false) al.add(i);
+       }
+        return al;
+    }
+}
