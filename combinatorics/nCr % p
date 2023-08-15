@@ -1,0 +1,59 @@
+Problem Description
+Given three integers A, B, and C, where A represents n, B represents r, and C represents p and p is a prime number greater than equal to n, find and return the value of nCr % p where nCr % p = (n! / ((n-r)! * r!)) % p.
+
+x! means factorial of x i.e. x! = 1 * 2 * 3... * x.
+
+NOTE: For this problem, we are considering 1 as a prime.
+
+
+
+Problem Constraints
+1 <= A <= 106
+1 <= B <= A
+A <= C <= 109+7
+
+
+Input Format
+The first argument given is the integer A ( = n).
+The second argument given is the integer B ( = r).
+The third argument given is the integer C ( = p).
+
+
+
+Output Format
+Return the value of nCr % p.
+  ///////////////////////////////////////////////////////////////////////
+  public class Solution {
+
+    public int solve(int A, int B, int C) {
+        int n=A;
+        int r=B;
+        int m=C;
+        long nfact=fact(n,m);
+        //////////////////
+        long t1=fact(r,m);
+        long rfact=fastexp((int)t1,m-2,m);
+        //////////////////////////////
+        long t=fact(n-r,m);
+        long nrfact = fastexp((int)t,m-2,m);
+        return (int)(nfact%m*nrfact%m*rfact%m)%m;
+        
+
+    }
+    long fact(int n,int m){
+        long fact=1;
+        for(int i=1;i<=n;i++){
+            fact =(fact%m * i%m)%m;
+        }
+        return fact;
+    }
+         public long fastexp(int a ,long m,int mod){
+        if(m==0) return 1%mod;
+        if(m==1) return a%mod;
+        long ans=fastexp(a,m/2,mod);
+       // long hp=(ans%mod*ans%mod)%mod;
+        if((m%2) == 0) return (ans%mod *ans%mod)%mod;
+        else 
+         return (a%mod* ans%mod*ans%mod)%mod;
+    }
+}
