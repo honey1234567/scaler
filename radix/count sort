@@ -1,0 +1,44 @@
+Given an array A. Sort this array using Count Sort Algorithm and return the sorted array.
+We will keep the count of frequency of each of the
+elements of the array using a frequency array. Then
+we will move from 1 to size of the the frequency array
+and insert them in our final sorted array.
+
+Time Complexity : O(N + K)
+Space Complexity : O(K)
+where N is the size and K is the maximum 
+value of the given array
+//////////////////////////////////////////////////////////////////////////////////////////
+public class Solution {
+    public ArrayList<Integer> solve(ArrayList<Integer> A) {
+                int len = A.size(), max = Integer.MIN_VALUE;
+       
+        int[] res = new int[len];
+
+        for(int i=0; i<len; i++){
+            if(A.get(i)>max){
+                max=A.get(i);
+            }
+        }
+
+         int[] freq = new int[max+1];
+        
+        int[] f = new int[max+1];
+        ArrayList<Integer> al = new ArrayList<>();
+        for(int it:A){
+            f[it]++;
+        }
+        for(int i=0;i<max+1;i++){
+            if(f[i] != 0){
+                //int n=
+            for(int j=i;f[i] != 0;f[i]--){
+                if(j != 0){
+                   al.add(i);
+                }
+            }
+            }
+
+        }
+        return al;
+    }
+}
