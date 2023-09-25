@@ -1,0 +1,68 @@
+/*
+class ListNode {
+    int val;
+    ListNode right, down;
+    ListNode(int x) {
+        val = x;
+        right = down = null;
+    }
+}
+*/
+ListNode flatten(ListNode root) {
+    if(root == null || root.right == null){
+        return root;
+    }
+    // Dividing the List into two halves
+    ListNode headA = root;//or getMid for exact step in mergesort
+    ListNode headB = headA.right;
+    headA.right = null;
+    // flatten the lists individually
+     headA = flatten(headA);
+     headB = flatten(headB);
+    // merge the two sorted Linked Lists
+    return mergeTwoSortedLists(headA, headB);
+}
+
+public static ListNode mergeTwoSortedLists(ListNode headA, ListNode headB){
+   if(headA == null){
+       return headB;
+   }
+
+   if(headB == null){
+       return headA;
+   }
+
+   ListNode newHead = null;
+   if(headA.val <= headB.val){
+       newHead = headA;
+       headA = headA.down;
+   }else{
+       newHead = headB;
+       headB = headB.down;
+   }
+
+    ListNode temp = newHead;
+
+    while(headA != null && headB != null){
+        if(headA.val <= headB.val){
+            temp.down = headA;
+            temp = temp.down;
+            headA = headA.down;
+        }else{
+            temp.down = headB;
+            temp = temp.down;
+            headB = headB.down;
+        }
+    }
+
+    if(headA == null){
+        temp.down = headB;
+    }
+
+    if(headB == null){
+        temp.down = headA;
+    }
+
+    return newHead;
+
+}
