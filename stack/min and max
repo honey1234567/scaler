@@ -1,0 +1,83 @@
+Problem Description
+Given an array of integers A.
+
+The value of an array is computed as the difference between the maximum element in the array and the minimum element in the array A.
+
+Calculate and return the sum of values of all possible subarrays of A modulo 109+7.
+///////////////////////////////////
+public class Solution {
+    //leftsmaller
+public int[] firstsmallertoleft(int[] A, int [] Arr){
+    Arrays.fill(Arr,-1);
+    Stack<Integer> s=new Stack<>();
+    for(int i=0;i<A.length;i++){
+        while(s.size()!=0 && A[s.peek()]>=A[i])
+        s.pop();
+        if(s.size()!=0)
+          Arr[i]=s.peek();
+        s.push(i);
+    }
+return Arr;
+}
+//right smaller
+public int[] firstsmallertoright(int[] A, int [] Arr){
+    Arrays.fill(Arr,A.length);
+    Stack<Integer> s=new Stack<>();
+    for(int i=A.length-1;i>=0;i--){
+        while(s.size()!=0 && A[s.peek()]>=A[i])
+        s.pop();
+        if(s.size()!=0)
+          Arr[i]=s.peek();
+        s.push(i);
+    }
+return Arr;
+}
+    public int solve(int[] A) {
+        int [] Ls=new int[A.length];
+        int [] Rs=new int[A.length];
+        int [] LG=new int[A.length];
+        int [] RG=new int[A.length];
+        //indexes
+        firstsmallertoleft(A,Ls);
+        firstsmallertoright(A,Rs);
+        firstlargertoleft(A,LG);
+        firstlargertoright(A,RG);
+//  for(int i=0;i<A.length;i++)
+//             System.out.print(Rs[i]+" ");
+        long max=0;long min=0;
+        for(int i=0;i<A.length;i++){
+                min+=(long)A[i]*((long)(i-Ls[i])*(long)(Rs[i]-i));
+                max+=(long)A[i]*((long)(i-LG[i])*(long)(RG[i]-i));
+
+        }
+        return (int)((max-min)%1000000007);
+
+    }
+    //first larger to right
+    public int[] firstlargertoright(int[] A, int [] Arr){
+    Arrays.fill(Arr,A.length);
+    Stack<Integer> s=new Stack<>();
+    for(int i=A.length-1;i>=0;i--){
+        while(s.size()!=0 && A[s.peek()]<=A[i])
+        s.pop();
+        if(s.size()!=0)
+          Arr[i]=s.peek();
+        s.push(i);
+    }
+return Arr;
+}
+//firstlargertoleft
+public int[] firstlargertoleft(int[] A, int [] Arr){
+    Arrays.fill(Arr,-1);
+    Stack<Integer> s=new Stack<>();
+    for(int i=0;i<A.length;i++){
+        while(s.size()!=0 && A[s.peek()]<=A[i])
+        s.pop();
+        if(s.size()!=0)
+          Arr[i]=s.peek();
+        s.push(i);
+    }
+return Arr;
+}
+
+}
