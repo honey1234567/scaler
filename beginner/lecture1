@@ -1,0 +1,147 @@
+Print "Hello World !" in the output.
+  System.out.println("Hello World !");
+  ////////////////////////////////////////////////
+Hello
+
+World !
+   System.out.println("Hello");
+        System.out.println();
+        System.out.print("World !");
+
+//////////////////////////////////////////
+Hello 40
+50 World !
+        System.out.println("Hello 40");
+            System.out.println("50 World !");
+///////////////////////////////////
+Print the output of 6+3, 6-3, 6*3, 6/3 in separate lines.
+             System.out.println(6+3);
+        System.out.println(6-3);
+        System.out.println(6*3);
+        System.out.println(6/3);
+//////////////////////////////////////////////////////////
+Input:-
+Ram
+Shyam
+
+
+Example Output
+Output:-
+Ram says Hi to Shyam
+        Scanner sc=new Scanner(System.in);
+             String A = sc.next();
+        String B = sc.next();
+        System.out.print(A+" says Hi to "+B);
+////////////////////////////////////////////////////////////////////////
+Print in a single line separated by space A+B, A*B, A-B, A/B in the same order.
+        Scanner scn = new Scanner(System.in);
+int A = scn.nextInt();
+int B = scn.nextInt();
+System.out.print((A+B) + " " + (A*B) + " " + (A-B) + " " + (A/B));
+/////////////////////////////////////////////////////////////////////////////////////////////
+Given two numbers A and B. Concatenate the two numbers and print it.
+     Scanner myScanner=new Scanner(System.in);
+                int A = myScanner.nextInt();
+        int B = myScanner.nextInt();
+
+        System.out.print("" + A +B);
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+You will be given an integer in the input. You need to add 10 to it and print the result to the output.
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        System.out.println(a+10);
+////////////////////////////////////////////////////////////////////////////////////////////////
+Given a name A as input. Print "Hello A", where A is the name in input.
+          Scanner sc = new Scanner(System.in);
+        String a = sc.next();
+        System.out.println("Hello"+" "+a);
+////////////////////////////////////////////////////////////////////////////////////////////////
+Given the value of a single bill and the number of bills you received, print the total value of the bills.
+
+Note: The value of all the bills are same
+         Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        System.out.println(a*b);
+/////////////////////////////////////////////////////////////////
+Given total bills amount and amount of a single bill. Print number of bills.
+
+Note : The total amount is equally splitted in all bills. The number of bills should be an integer value.
+
+Input Format
+
+The first line contains a real number N denoting the total budget.
+The second line contains an integer M denoting the value of a single bill.
+Output Format
+
+Print in a single line denoting the total number of bills that can fit in the total budget.
+        Scanner sc = new Scanner(System.in);
+         double n = sc.nextDouble();
+        int m = sc.nextInt();
+        int no_of_bill = (int)n / m;
+        System.out.print(no_of_bill);
+////////////////////////////////////////////////////////////////////////////////
+Given an english sentence, take it in the input and print it in the output.
+Input Format
+
+Single line containing an english sentence.
+Output Format
+
+Print in a single line the sentence in the input.
+                Scanner sc = new Scanner(System.in);
+         String n = sc.nextLine();
+         System.out.println(n);
+/////////////////////////////////////////////////////////////
+You're going to write some code to help you cook a gorgeous lasagna from your favorite cookbook. According to your cookbook, the Lasagna should be in the oven for 40 minutes. Given the time (in minutes), the lasagna has been in the oven, find how many more minutes the lasagna still needs to bake for.
+
+
+Problem Constraints
+0 <= N <= 40
+
+
+Input Format
+The only first line contains the integer N, denoting the actual time (in minutes) the lasagna has been in the oven for.
+
+
+Output Format
+Print in a single line how many minutes the lasagna needs to bake.
+                Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int time_left_for_lasagna = 40 - n;
+        System.out.print(time_left_for_lasagna);
+////////////////////////////////////////////////////////////////////////////////////////////
+You'll write some code to help you cook a gorgeous lasagna from your favorite cookbook. Now, you also want to add a few layers to the lasagna. Assume **each layer takes 2 minutes** to prepare. Given the number of layers you want to add to the lasagna, find how many minutes you would spend making them.
+
+
+Input Format
+The only first line contains the integer N denoting the number of layers.
+
+
+Output Format
+Print in a single line how many minutes are required to prepare N layers.
+              Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int time = 2 * n;
+        System.out.print(time);
+//////////////////////////////////////////////////////////////////////////////////////////
+You wrote some code to help you cook a gorgeous lasagna from your favorite cookbook. Now, you want to find the total number of minutes you've been cooking for the sum of your preparation time and the time the lasagna has already spent baking in the oven. The preparation time of one layer is 2 minutes. Given the number of layers added to the lasagna and the number of minutes the lasagna has been baking in the oven, find the total elapsed cooking time (prep + bake) in minutes.
+
+
+Problem Constraints
+1 <= N <= 20
+0 <= M <= 40
+
+
+Input Format
+There are 2 lines in the input.
+The first line contains the integer N denoting the number of layers.
+The second line contains the integer M denoting the time the lasagna has already spent baking in the oven.
+
+
+Output Format
+Print in a single line the total elapsed cooking time.
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int total_time_for_cooking = 2 * n + m;
+        System.out.print(total_time_for_cooking);
