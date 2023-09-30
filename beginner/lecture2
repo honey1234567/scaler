@@ -1,0 +1,120 @@
+     Scanner sc = new Scanner(System.in);
+        int a =sc.nextInt();
+        int b =sc.nextInt();
+        int c =sc.nextInt();
+        if(a == b && b == c && c == a){
+            System.out.println("equilateral");
+        }
+        else if(a == b || b == c || c == a){
+            System.out.println("isosceles");
+        }
+        else{
+            System.out.println("scalene");
+
+        }
+//////////////////////////////////////////////////////////
+Mr. T got the Electricity bill of his house. He felt that the bill amount was too much. He come to you to understand the relation between amount and number of units with Electricity bill.
+
+
+Instructions are give on Electricity biil that :
+1. For first 50 units Rs. 0.50/unit.
+2. For next 100 units Rs. 0.75/unit.
+3. For next 100 units Rs. 1.20/unit.
+4. For above 250 units Rs. 1.50/unit.
+5. An additional surcharge of 20% is added to the bill.
+
+NOTE: As the electricity bill can have any real value (floating point), you have to tell the Integral value of the bill. For eg. Integral value of 2.91 is 2.
+
+To avoid manual calculation again and again, You have to write a code which take number of Unit (suppose N) from user and print the amount.
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // YOUR CODE GOES HERE
+        // Please take input and print output to standard input/output (stdin/stdout)
+        // DO NOT USE ARGUMENTS FOR INPUTS
+        // E.g. 'Scanner' for input & 'System.out' for output
+        Scanner sc = new Scanner(System.in);
+        double unit = sc.nextDouble();
+        double bill;
+        if (unit <= 50)
+        {
+            bill = (0.5*unit);
+           int total = (int)(0.2*bill + bill);
+            System.out.println(total);
+        }
+        else if (unit>50 && unit <=150)
+        {
+            bill = (0.5*50) + ((unit-50)*0.75);
+          int  total = (int)(0.2*bill + bill);
+            System.out.println(total);
+        }
+        else if (unit > 150 && unit <=250)
+        {
+            bill = ((0.50* 50)+(0.75*100)+ 1.20*(unit-150));
+         int total = (int)(0.2*bill + bill);
+            System.out.println(total);
+        }
+        else if (unit > 250)
+        {
+            bill = ((0.50* 50)+(0.75*100)+ (1.20*100)+ 1.50*(unit-250));
+           int total = (int)(0.2*bill + bill);
+            System.out.println(total);
+        }
+    }
+}
+////////////////////////////////////////////////////////////////////////////
+ int C=(int)Math.floor(A/B);
+/////////////////////////////////////////////////
+You are given a Bank account having N amount and you are asked to perform ADD(credit) or SUBTRACT(debit) operation of an amount X.
+
+After the operation print the amount left in the Bank account. If the debit amount is greater than current balance print "Insufficient Funds"(without quotes) and the operation is skipped.
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int type = sc.nextInt();
+        int amount = sc.nextInt();
+        if( type == 1){
+         n = n + amount;
+        System.out.println(n);
+        }
+        else{
+            if(amount > n){
+               System.out.println("Insufficient Funds");
+            }
+            else{
+                n = n - amount;
+                System.out.println(n);
+            }
+        }
+    }
+}
+/////////////////////////////////////////////////////////////////////////
+You are given the Cost Price C and Selling Price S of a Product. You have to tell whether there is a Profit or Loss. Also, calculate total profit or loss.
+
+NOTE: It is guaranteed that Cost Price and Selling Price are not equal.
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int c = sc.nextInt();
+        int s = sc.nextInt();
+        if(s > c){
+            System.out.println(1);
+            System.out.println(s-c);
+        }
+        else{
+            System.out.println(-1);
+            System.out.println(c-s);
+        }
+    }
+}
+ans.toUpperCase()//ans is string
+ in leap year feb has 28 days
