@@ -1,0 +1,52 @@
+public static class UserQueue {
+/** Initialize your data structure here. */
+static Stack<Integer> stack1;
+static Stack<Integer> stack2;
+
+UserQueue() {
+stack1=new Stack<>();
+stack2=new Stack<>();
+
+}
+/** Push element X to the back of queue. */
+static void push(int X) {
+stack1.push(X);
+}
+/** Removes the element from in front of queue and returns that element. */
+static int pop() {
+if(stack2.isEmpty()){
+while(!stack1.isEmpty()){
+int val=stack1.pop();
+stack2.push(val);
+}
+}
+
+return stack2.pop();
+
+}
+/** Get the front element of the queue. */
+static int peek() {
+if(stack2.isEmpty()){
+while(!stack1.isEmpty()){
+int val=stack1.pop();
+stack2.push(val);
+}
+}
+
+return stack2.peek();
+}
+/** Returns whether the queue is empty. */
+static boolean empty() {
+return stack1.isEmpty() && stack2.isEmpty();
+
+}
+}
+
+/**
+* Your UserQueue object will be instantiated and called as such:
+* UserQueue obj = new UserQueue();
+* obj.push(X);
+* int param2 = obj.pop();
+* int param3 = obj.peek();
+* boolean param4 = obj.empty();
+*/
