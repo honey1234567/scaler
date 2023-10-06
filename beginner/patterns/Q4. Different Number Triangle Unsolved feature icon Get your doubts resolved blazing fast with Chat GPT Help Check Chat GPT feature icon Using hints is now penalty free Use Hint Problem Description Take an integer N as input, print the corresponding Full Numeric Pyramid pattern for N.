@@ -1,0 +1,63 @@
+Input 1:
+
+2
+Input 2:
+
+3
+
+
+Example Output
+Output 1:
+
+0 2 0
+1 2 3
+Output 2:
+
+0 0 3 0 0
+0 2 4 6 0
+1 2 3 4 5
+
+
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // YOUR CODE GOES HERE
+        // Please take input and print output to standard input/output (stdin/stdout)
+        // DO NOT USE ARGUMENTS FOR INPUTS
+        // E.g. 'Scanner' for input & 'System.out' for output
+              Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+
+        // rows
+        for(int row = 1; row <= N ;row++){
+            // print zeroes
+            for(int zer = 1; zer <= N-row; zer++){
+                System.out.print("0" + " ");
+            }
+            // print N of first row
+            if(row == 1){
+                System.out.print(N + " ");
+            }
+            // middle numbers
+            if(row > 1 && row < N){
+                // multiples
+                for(int j = 1; j <= 2*row-1; j++){
+                    System.out.print(j*(N-row+1) + " ");
+                }
+            }
+            // last row numbers
+            if(row == N){
+                for(int i = 1; i <= (2*N)-1; i++){
+                    System.out.print(i + " ");
+                }
+            }
+            // last col zeroes
+            for(int zer = 1; zer <= N-row; zer++){
+                System.out.print("0" + " ");
+            }
+            System.out.println();
+        }
+    }
+}
