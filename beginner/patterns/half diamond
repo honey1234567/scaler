@@ -1,0 +1,27 @@
+Take an integer N as input, print the corresponding Half Diamond pattern with 2*N - 1 rows.
+
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // YOUR CODE GOES HERE
+        // Please take input and print output to standard input/output (stdin/stdout)
+        // DO NOT USE ARGUMENTS FOR INPUTS
+        // E.g. 'Scanner' for input & 'System.out' for output
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        for(int i =1;i<=2*n-1;i++){
+            if(i>n){
+                for(int j=1;j<=2*n-i;j++){
+                    System.out.print("*");  
+                }
+            }else{
+                for(int j=1;j<=i;j++){
+                    System.out.print("*");  
+                }
+            }
+            System.out.println();
+        }
+    }
+}
