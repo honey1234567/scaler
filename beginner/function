@@ -1,0 +1,10 @@
+If the radius is 8, the area of the circle becomes approximately 201.0619. However, the ceil value of this area is 202.
+
+Explanation 1 :
+If the radius is 15, the area of the circle is approximately 706.8583. However, the ceil value of this area is 707.
+
+public class Solution {
+    public int solve(int A) {
+        return (int) Math.ceil((Math.PI * (A*A)));
+    }
+}
