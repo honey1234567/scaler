@@ -8,3 +8,53 @@ public class Solution {
         return (int) Math.ceil((Math.PI * (A*A)));
     }
 }
+////////////////
+//////////////LCM
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        int max = 0;
+        if(A > B){
+            max = A;
+        }
+        else{
+            max = B;
+        }
+        while(true){
+            if(max % A == 0 && max % B == 0 ){
+                break;
+            }
+            max++;
+        }
+        System.out.println(max);
+    }
+}
+////////////////////HCF
+
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+public static void main(String[] args) {
+// YOUR CODE GOES HERE
+// Please take input and print output to standard input/output (stdin/stdout)
+// DO NOT USE ARGUMENTS FOR INPUTS
+// E.g. 'Scanner' for input & 'System.out' for output
+Scanner scn = new Scanner(System.in);
+int A = scn.nextInt();
+int B = scn.nextInt();
+int i;
+for(i = A < B ? A : B; i >= 1; i--){
+if(A%i==0 && B%i==0){
+break;
+}
+}
+System.out.print(i);
+}
+//////////////////////////////////////
+
