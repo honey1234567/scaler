@@ -1,0 +1,34 @@
+Write a program to input N numbers array, a number X and a number Y from user and insert an element Y in it at specified position X. X is based on 1-based indexing
+
+Note: When an element is inserted at position X, all elements that were already present at position >= X, gets shifted to one position right, not replaced.
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+       Scanner sc = new Scanner(System.in);
+       int len =  sc.nextInt();
+       int[] arr = new int[len];
+       for(int i = 0 ; i<len ;i++)
+       {
+           arr[i] = sc.nextInt();
+       }
+       int indexFind = sc.nextInt();
+       int numActual = sc.nextInt();
+       int[] NewArr = new int[len+1];
+
+     for (int i=0;i<indexFind-1;i++) {
+                NewArr[i] = arr[i];
+            }
+            for(int j =indexFind-1; j < len; j++)
+            {
+                NewArr[j+1] = arr[j];
+            }
+            NewArr[indexFind-1] = numActual;
+
+       for(int i =0 ;i<NewArr.length;i++){
+           System.out.print(NewArr[i]+" ");
+       }
+   
+    }
+}
