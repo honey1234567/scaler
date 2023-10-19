@@ -1,0 +1,50 @@
+/*
+Given  a matrix of size N*N as an argument ,Print it wave form (Column wise)
+ Matrix with size(3) ---> 0 1 2 3 <--index
+ input->matrix
+       index->0  4 1 2
+       index->1  7 4 4
+       index->2  3 7 4
+ output --> 4 7 3 7 4 1 2 4 4
+ Observation --> even index is printing same as matrix (col)
+                  odd index is reversing the col
+                  col 1--> printing data top to bottom same as matrix (col)
+                  col 2--> printing data bottom to top (Reversing)
+                  col 3--> printing data top to bottom same as matrix (col)
+ */
+import java.util.Scanner;
+
+public class WavePrintColumnWise {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+
+        int arr[][] = new int[N][N];
+        for(int i =0; i<N; i++){
+            for (int j=0; j<N;j++){
+                arr[i][j] = sc.nextInt();
+            }
+        }
+      waveFormColumnWise(arr);
+    }
+
+    public static void waveFormColumnWise(int[][] arr) {
+        int n = arr.length;
+        int m = arr[0].length;
+         //printing element column wise
+        for (int col = 0; col < m; col++) {
+            if (col % 2 == 0) {
+                //if column index is Even -> print Top to Bottom
+                for (int row = 0; row < n; row++) {
+                    System.out.print(arr[row][col]+" ");
+                }
+            } else {
+                //if column index Odd -> print Bottom to Top(Reversing the element)
+                for (int row = n - 1; row >= 0; row--) {
+                    System.out.print(arr[row][col]+" ");
+                }
+            }
+        }
+    }
+}
