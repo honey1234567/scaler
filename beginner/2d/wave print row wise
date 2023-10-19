@@ -1,0 +1,35 @@
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+static void wavePrintRow(int[][] mat){
+// printing type is row wise printing
+for(int r = 0; r < mat.length; r++){
+if(r % 2 == 0){
+//row is even : print top to bottom
+for(int c = 0; c < mat[0].length; c++){
+System.out.print(mat[r][c] + " ");
+}
+}
+else{
+// row is odd : print bottom to top
+for(int c = mat[0].length-1; c >=0; c--){
+System.out.print(mat[r][c] + " ");
+}
+}
+}
+}
+
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+int n = sc.nextInt();
+int[][] mat = new int[n][n];
+
+for(int i = 0; i < n; i++){
+for(int j = 0; j < n; j++){
+mat[i][j] = sc.nextInt();
+}
+}
+wavePrintRow(mat);
+}
+}
