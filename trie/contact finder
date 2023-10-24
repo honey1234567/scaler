@@ -1,0 +1,80 @@
+We want to make a custom contacts finder applications as part of our college project. The application must perform two types of operations:
+
+Type 1: Add name B[i] ,denoted by 0 in vector A where B[i] is a string in vector B denoting a contact name. This must store B[i] as a new contact in the application.
+
+Type 2: Find partial for B[i] ,denoted by 1 in vector A where B[i] is a string in vector B denoting a partial name to search the application for. It must count the number of contacts starting with B[i].
+
+You have been given sequential add and find operations. You need to perform each operation in order.
+
+And return as an array of integers, answers for each query of type 2(denoted by 1 in A) .
+
+
+
+public class Solution {
+    public class Node {
+        Character data;
+        Node[] children;
+        int count;
+
+        Node(Character c) {
+            data = c;
+            children = new Node[26];
+            count = 0;
+        }
+    }
+
+    public void insert(Node root, String word) {
+        Node curr = root;
+
+        for(int i = 0; i < word.length(); i++) {
+            Character ch = word.charAt(i);
+            int ind = ch - 'a';
+
+            if(curr.children[ind] == null) {
+                Node node = new Node(ch);
+                curr.children[ind] = node;
+            }
+
+            curr = curr.children[ind];
+            curr.count += 1;
+        }
+    }
+
+    public int search(Node root, String word) {
+        Node curr = root;
+
+        for(int i = 0; i < word.length(); i++) {
+            Character ch = word.charAt(i);
+            int ind = ch - 'a';
+
+            if(curr.children[ind] == null) {
+                return 0;
+            }
+
+            curr = curr.children[ind];
+        }
+
+        return curr.count;
+    }
+
+    public int[] solve(int[] A, String[] B) {
+        ArrayList<Integer> res = new ArrayList<>();
+        Node root = new Node('0');
+
+        for(int i = 0; i < A.length; i++) {
+            if(A[i] == 0) {
+                insert(root, B[i]);
+            } else {
+                res.add(search(root, B[i]));
+            }
+        }
+
+        int n = res.size();
+        int[] ans = new int[n];
+        for(int i = 0; i < n; i++) {
+            ans[i] = res.get(i);
+        }
+
+        return ans;
+    }
+}
