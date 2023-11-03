@@ -1,0 +1,101 @@
+Given an array of integers, A denoting a stream of integers. New arrays of integer B and C are formed.
+Each time an integer is encountered in a stream, append it at the end of B and append the median of array B at the C.
+
+Find and return the array C.
+
+NOTE:
+
+If the number of elements is N in B and N is odd, then consider the median as B[N/2] ( B must be in sorted order).
+If the number of elements is N in B and N is even, then consider the median as B[N/2-1]. ( B must be in sorted order).
+
+
+Problem Constraints
+1 <= length of the array <= 100000
+1 <= A[i] <= 109
+
+
+
+Input Format
+The only argument given is the integer array A.
+
+
+
+Output Format
+Return an integer array C, C[i] denotes the median of the first i elements.
+
+
+
+Example Input
+Input 1:
+
+ A = [1, 2, 5, 4, 3]
+Input 2:
+
+ A = [5, 17, 100, 11]
+
+
+Example Output
+Output 1:
+
+ [1, 1, 2, 2, 3]
+Output 2:
+
+ [5, 5, 17, 11]
+
+
+Example Explanation
+Explanation 1:
+
+ stream          median
+ [1]             1
+ [1, 2]          1
+ [1, 2, 5]       2
+ [1, 2, 5, 4]    2
+ [1, 2, 5, 4, 3] 3
+Explanation 2:
+
+ stream          median
+ [5]              5
+ [5, 17]          5
+ [5, 17, 100]     17
+ [5, 17, 100, 11] 11 
+
+//////////////////////////////////////
+public class Solution {
+    public int[] solve(int[] A) {
+         PriorityQueue<Integer>pq1 = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer>pq2 = new PriorityQueue<>();
+         pq1.add(A[0]);
+         int ans[] =new int[A.length];
+         int k=0;
+         ans[k] =pq1.peek();
+         int n = A.length;
+         k++;
+
+         for(int i=1;i<n;i++){
+             if(A[i]>pq1.peek()) pq2.add(A[i]);
+             else{
+                 pq1.add(A[i]);
+             }
+             int diff = Math.abs(pq1.size()-pq2.size());
+             if(diff>1) baalanceQ(pq1,pq2);
+             if(pq1.size()>pq2.size()){
+                 ans[k++] = pq1.peek();
+             }else if(pq1.size()<pq2.size()){
+                 ans[k++] = pq2.peek();
+             }else{
+              ans[k++] = pq1.peek();   
+             }
+         } 
+         return ans;
+    }
+    public void baalanceQ(PriorityQueue<Integer>pq1,PriorityQueue<Integer>pq2){
+        int sz1 = pq1.size();
+        int sz2 = pq2.size();
+        if(sz1>sz2){
+            pq2.add(pq1.remove());
+        }else{
+              pq1.add(pq2.remove());
+        }
+    }
+}
