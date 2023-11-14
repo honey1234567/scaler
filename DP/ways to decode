@@ -1,0 +1,35 @@
+public class Solution {
+    public   int count = 0;
+     long dp[];
+
+    public int numDecodings(String A) {
+        count = 0;
+        dp = new long[A.length()];
+           long c=  decode(0,A);
+            return (int)c%1000000007;
+    
+    }
+    public long decode(int i , String A){
+        if(i >=A.length()) return  1;
+                   if(A.charAt(i) == '0') return 0;
+        if(i==A.length()-1) return 1;
+               // if(A=="") return 0;
+          if(dp[i] != 0) return dp[i]%1000000007;
+  
+           if( (A.charAt(i)-48==1 ||
+           (A.charAt(i)-48==2 && (A.charAt(i+1)-48<=6 && A.charAt(i+1)-48>=0))
+           )) {
+                 dp[i] = (decode(i+1,A)%1000000007+ decode(i+2,A)%1000000007)%1000000007;                
+                 return  dp[i]; 
+           } 
+           else{
+                    
+             
+           dp[i] = decode(i+1,A)%1000000007;
+                 return  dp[i]; 
+       
+       }
+  
+      
+    }
+}
