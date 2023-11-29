@@ -1,0 +1,36 @@
+public class Solution {
+    public int solve(int[][] A) {
+                List<Pair> list = new ArrayList();
+        for(int i=0;i<A.length;i++){
+            int h = A[i][0];
+            int w = A[i][1];
+            Pair p = new Pair(h,w);
+            list.add(p);
+        }
+
+        Collections.sort(list,(p1,p2)->p1.height-p2.height);
+
+        int[]  dp = new int[A.length];
+        dp[0] = 1;
+        int ans = dp[0];
+          for(int i=1;i<list.size();i++){
+                 int max = Integer.MIN_VALUE;
+            for(int j=0;j<i;j++){
+                if(list.get(i).height>list.get(j).height && list.get(i).width>list.get(j).width){
+                   max=Math.max(max,dp[j]);
+                }
+            }
+            dp[i] = (max != Integer.MIN_VALUE)?(max+1):1;
+            ans = Math.max(ans,dp[i]);
+        }
+        return ans;
+    }
+}
+class Pair {
+    int height, width;
+    Pair(int h, int w) {
+        height = h;
+        width = w;
+    }
+}
+
