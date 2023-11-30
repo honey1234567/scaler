@@ -1,0 +1,33 @@
+Given a binary tree. Check whether the given tree is a Sum-binary Tree or not.
+
+Sum-binary Tree is a Binary Tree where the value of a every node is equal to sum of the nodes present in its left subtree and right subtree.
+
+An empty tree is Sum-binary Tree and sum of an empty tree can be considered as 0. A leaf node is also considered as SumTree.
+
+Return 1 if it sum-binary tree else return 0.
+
+
+
+public class Solution {
+
+    int flag = 1;
+    
+public int solve(TreeNode A) {
+        if(A.left==null && A.right==null){return 0;}
+        long sum2 = smbtree(A);
+        return flag;
+    }
+
+    public long smbtree(TreeNode A){
+        if(A==null) return 0;
+        if(A.left==null && A.right ==null) return A.val;
+          
+       long ls = smbtree(A.left);
+       long rs = smbtree(A.right);
+       
+       if(A.val != ls + rs) flag = 0;
+
+       return ls+rs+A.val;
+        
+    }
+}
