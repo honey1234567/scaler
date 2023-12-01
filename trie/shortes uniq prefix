@@ -1,0 +1,109 @@
+Given a list of N words, find the shortest unique prefix to represent each word in the list.
+
+NOTE: Assume that no word is the prefix of another. In other words, the representation is always possible
+
+
+
+Problem Constraints
+1 <= Sum of length of all words <= 106
+
+
+
+Input Format
+First and only argument is a string array of size N.
+
+
+
+Output Format
+Return a string array B where B[i] denotes the shortest unique prefix to represent the ith word.
+
+
+
+Example Input
+Input 1:
+
+ A = ["zebra", "dog", "duck", "dove"]
+Input 2:
+
+A = ["apple", "ball", "cat"]
+//////////////////////////////////////////////////
+
+  
+    
+
+public class Solution {
+    public class Node {
+        Character data;
+        Node[] children;
+        int count;
+
+        Node(Character c) {
+            data = c;
+            children = new Node[26];
+            count = 0;
+        }
+    }
+
+    public void insert(Node root, String word) {
+        Node curr = root;
+
+        for(int i = 0; i < word.length(); i++) {
+            Character ch = word.charAt(i);
+            int ind = ch - 'a';
+
+            if(curr.children[ind] == null) {
+                Node node = new Node(ch);
+                curr.children[ind] = node;
+            }
+
+            curr = curr.children[ind];
+            curr.count += 1;
+        }
+    }
+
+    public String search(Node root, String word) {
+        Node curr = root;
+     StringBuilder sb= new StringBuilder();
+        for(int i = 0; i < word.length(); i++) {
+            Character ch = word.charAt(i);
+            int ind = ch - 'a';
+            curr = curr.children[ind];
+            sb.append(ch);
+            if(curr.count==1) {
+                break;
+            }
+
+            
+        }
+
+        return sb.toString();
+    }
+
+      public String[] prefix(String[] A) {
+        ArrayList<String> res = new ArrayList<>();
+        Node root = new Node('0');
+
+        for(int i = 0; i < A.length; i++) {
+           // if(A[i] == 0) {
+                insert(root, A[i]);
+           // } else {
+               // res.add(search(root, B[i]));
+          //  }
+        }
+       for(int i = 0; i < A.length; i++) {
+           // if(A[i] == 0) {
+               // insert(root, A[i]);
+           // } else {
+                res.add(search(root, A[i]));
+          //  }
+        }
+
+        int n = res.size();
+        String[] ans = new String[n];
+        for(int i = 0; i < n; i++) {
+            ans[i] = res.get(i);
+        }
+
+        return ans;
+    }
+}
