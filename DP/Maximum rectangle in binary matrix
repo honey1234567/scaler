@@ -1,0 +1,55 @@
+Using DP
+public class Solution {
+    // TC: O(row * col^2) SC: O(row*col)
+    public int maximalRectangle(int[][] A) {
+        int row = A.length;
+        int col = A[0].length;
+        int[][] dp = new int[row][col];
+
+        // Adding the previous elements and skipping 0
+        // This takes TC: O(row * col)
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (j == 0) {
+                    dp[i][j] = A[i][j];
+                } else if (A[i][j] == 1) {
+                    dp[i][j] = dp[i][j - 1] + A[i][j];
+                } else {
+                    dp[i][j] = A[i][j];
+                }
+            }
+        }
+
+        // Now, we will go up for every element, as every element
+        // is giving the width of the rectangle as we are considering it as the right
+        // bottom element
+        // This takes TC: O(row * col * col) => O(row * col^2)
+        int width = Integer.MAX_VALUE;
+        int height = 1;
+        int area = Integer.MIN_VALUE;
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                int k = i;
+                width = dp[i][j];
+                height = 1;
+
+                // Skip if dp[i][j] is zero
+                if (dp[i][j] == 0) {
+                    continue;
+                }
+
+                while (k >= 0) {
+                    width = Math.min(width, dp[k][j]);//reduced width if topmost element is less
+                    area = Math.max(area, (width * height));
+                    // System.out.println(area);
+                    height++;
+                    k--;//increase ht to top
+                }
+            }
+        }
+
+        return area == Integer.MIN_VALUE ? 0 : area;
+
+    }
+}
