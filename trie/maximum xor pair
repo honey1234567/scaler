@@ -1,0 +1,61 @@
+Given an array of integers A, find and return the maximum result of A[i] XOR A[j], where i, j are the indexes of the array.
+////////////////////
+Theirs solution-to acoid reverse pair formation for ith elementr we will first check till i-1 th elementr
+like in hashmap
+public class Solution {
+    static private class TrieNode {
+        TrieNode left = null; // left points to 0 
+        TrieNode right = null; // right points to 1
+    }
+    public int solve(int[] A) {
+        return findMaximumXOR(A);
+    }
+    public static int findMaximumXOR(int[] nums) {
+        TrieNode root = new TrieNode();
+        // Constructing the Trie
+        for (int num: nums) {
+            TrieNode curr = root;
+            for (int i = 31; i >= 0; i--) {
+                int bit = (num >>> i) & 1;
+                if (bit == 0) {
+                    if (curr.left == null) {
+                        curr.left = new TrieNode();
+                    }
+                    curr = curr.left;
+                } else {
+                    if (curr.right == null) {
+                        curr.right = new TrieNode();
+                    }
+                    curr = curr.right;
+                }
+            }
+        }
+        int max = Integer.MIN_VALUE;
+
+        // Query on Trie
+        for (int num: nums) {
+            TrieNode curr = root;
+            int currSum = 0;
+            for (int i = 31; i >= 0; i--) {
+                int bit = (num >>> i) & 1;
+                if (bit == 0) {
+                    if (curr.right != null) {
+                        currSum += (1 << i);
+                        curr = curr.right;
+                    } else {
+                        curr = curr.left;
+                    }
+                } else {
+                    if (curr.left != null) {
+                        currSum += (1 << i);
+                        curr = curr.left;
+                    } else {
+                        curr = curr.right;
+                    }
+                }
+            }
+            max = Math.max(currSum, max);
+        }
+        return max;
+    }
+}
