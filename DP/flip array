@@ -1,0 +1,60 @@
+
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int solve(final List<Integer> A) {
+ int sum = 0;
+        for (int x : A)
+            sum += x;
+
+        sum /= 2;
+
+        int n = A.size()+1;
+        int m = sum + 1;
+        Pair[][] dp = new Pair[n][m];
+
+
+        for (int j = 0; j < m; j++) {
+            dp[0][j] = new Pair(0, 0);
+        }
+
+        for (int i = 0; i < n; i++) {
+            dp[i][0] = new Pair(0, 0);
+        }
+//In DP array we are storing info of sum which we got by considering or not considering the element and the number of elements selected to get the sum.
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < m; j++) {
+                if (A.get(i-1) <= j) {
+                    Pair prev = dp[i - 1][j];
+                    int newSum = dp[i - 1][j - A.get(i-1)].sum + A.get(i-1);
+                    int newFlips = dp[i - 1][j - A.get(i-1)].flips + 1;
+
+                    if (newSum > prev.sum) {
+                        dp[i][j] = new Pair(newSum, newFlips);
+                    } else if (newSum < prev.sum) {
+                        dp[i][j] = new Pair(prev.sum, prev.flips);
+                    } else {
+                        if (newFlips < prev.flips) {
+                            dp[i][j] = new Pair(newSum, newFlips);
+                        } else {
+                            dp[i][j] = new Pair(prev.sum, prev.flips);
+                        }
+                    }
+                } else {
+                    dp[i][j] = dp[i - 1][j];
+                }
+            }
+        }
+
+        return dp[n - 1][m - 1].flips;
+    }
+}
+
+class Pair {
+    int sum;
+    int flips;
+
+    Pair(int sum, int flips) {
+        this.sum = sum;
+        this.flips = flips;
+    }
+}
