@@ -1,0 +1,128 @@
+Problem Description
+Given a matrix of integers A of size N x M consisting of 0 and 1. A group of connected 1's forms an island. From a cell (i, j) such that A[i][j] = 1 you can visit any cell that shares a corner with (i, j) and value in that cell is 1.
+
+More formally, from any cell (i, j) if A[i][j] = 1 you can visit:
+
+(i-1, j) if (i-1, j) is inside the matrix and A[i-1][j] = 1.
+(i, j-1) if (i, j-1) is inside the matrix and A[i][j-1] = 1.
+(i+1, j) if (i+1, j) is inside the matrix and A[i+1][j] = 1.
+(i, j+1) if (i, j+1) is inside the matrix and A[i][j+1] = 1.
+(i-1, j-1) if (i-1, j-1) is inside the matrix and A[i-1][j-1] = 1.
+(i+1, j+1) if (i+1, j+1) is inside the matrix and A[i+1][j+1] = 1.
+(i-1, j+1) if (i-1, j+1) is inside the matrix and A[i-1][j+1] = 1.
+(i+1, j-1) if (i+1, j-1) is inside the matrix and A[i+1][j-1] = 1.
+Return the number of islands.
+
+NOTE: Rows are numbered from top to bottom and columns are numbered from left to right.
+
+
+
+Problem Constraints
+1 <= N, M <= 100
+
+0 <= A[i] <= 1
+
+
+
+Input Format
+The only argument given is the integer matrix A.
+
+
+
+Output Format
+Return the number of islands.
+
+
+
+Example Input
+Input 1:
+
+ A = [ 
+       [0, 1, 0]
+       [0, 0, 1]
+       [1, 0, 0]
+     ]
+Input 2:
+
+ A = [   
+       [1, 1, 0, 0, 0]
+       [0, 1, 0, 0, 0]
+       [1, 0, 0, 1, 1]
+       [0, 0, 0, 0, 0]
+       [1, 0, 1, 0, 1]    
+     ]
+
+
+Example Output
+Output 1:
+
+ 2
+Output 2:
+
+ 5
+
+
+Example Explanation
+Explanation 1:
+
+ The 1's at position A[0][1] and A[1][2] forms one island.
+ Other is formed by A[2][0].
+Explanation 2:
+
+ There 5 island in total.
+
+////////////////////////////////////////////
+public class Solution {
+    int[] dirx = {-1,0,1,1,1,0,-1,-1};
+    int[] diry = {1,1,1,0,-1,-1,-1,0};
+    void dfs(int i, int j, boolean[][] vis, int[][] A)
+    {
+        for(int d=0; d<dirx.length; d++)
+        {
+            int x = i + dirx[d];
+            int y = j + diry[d];
+
+            if(x >= 0 && y >= 0 && x < A.length && y < A[0].length
+               && vis[x][y] == false && A[x][y] == 1)
+            {
+                vis[x][y] = true;
+                dfs(x, y, vis, A);
+            }
+        }
+    }
+
+    public int solve(int[][] A) {
+        //we create a function that checks if the cells are connected or not
+
+        //Attributes of the function
+        //-- It shall ensure that the same cell is not visited more than once
+        //-- It ensures the count is only taken when all the connected cells are covered and there
+        //are no more connected cells to form the island
+       
+
+        //-- We will use dfs logic here.
+        //-- The function shall try to traverse all the possible 8 directions from a given point
+        //-- Only when no further path is available we shall return back and update the count of islands
+        //this is to ensure that all the grouped elements are covered
+
+        //Now this function shall stop when a single island is formed
+        //so we shall call this dfs function iteratively
+
+
+        boolean[][] vis = new boolean[A.length][A[0].length];
+        int ans = 0;
+        for(int i=0; i<A.length; i++)
+        {
+            for(int j=0; j<A[0].length; j++)
+            {
+                if(vis[i][j] == false && A[i][j] == 1)
+                {  vis[i][j]=true;
+                    ans = ans+1; // counts the discovery of new untouched cell
+                    dfs(i, j, vis, A); //traverse all the connected cells to form the island and updates the vis array
+                }
+            }
+        }
+        return ans;
+
+    }
+}
