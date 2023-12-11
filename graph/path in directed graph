@@ -59,3 +59,6 @@ public class Solution {
     return false;
   }
 }
+Trade-offs between BFS and DFS: 
+
+Breadth-First search can be useful to find the shortest path between nodes, and depth-first search may traverse one adjacent node very deeply before ever going into immediate neighbours. 
