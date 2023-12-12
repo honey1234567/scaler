@@ -1,0 +1,26 @@
+public class Solution {
+    public String solve(String A, String B) {
+         char[] a1 = A.toCharArray();
+         char[] b1 = B.toCharArray();
+         
+         HashMap<Character,Integer> hma = new HashMap<>();
+         HashMap<Character,Integer> hmb = new HashMap<>();
+         /////////////////////////////make hashmap//////////////////////
+          for(int i=0;i<a1.length;i++){
+            hma.put(a1[i],hma.getOrDefault(a1[i],0)+1);
+            
+        }
+           for(int i=0;i<b1.length;i++){
+            hmb.put(b1[i],hmb.getOrDefault(b1[i],0)+1);
+            
+        }
+        ///comapre///////////
+        if(hma.size() != hmb.size()) return "False";
+        for(Character ch:hmb.keySet()){
+            if(hma.get(ch) == null) return "False";
+            if(hma.get(ch) != hma.get(ch)) return "False";
+        }
+        return "True";
+        
+         
+    }
