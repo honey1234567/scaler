@@ -1,0 +1,79 @@
+Given character matrix A of dimensions N×M consisting of O's and X's, where O = white, X = black.
+
+Return the number of black shapes. A black shape consists of one or more adjacent X's (diagonals not included)
+
+
+
+Problem Constraints
+1 <= N, M <= 1000
+
+A[i][j] = 'X' or 'O'
+
+
+
+Input Format
+The First and only argument is character matrix A.
+
+
+
+Output Format
+Return a single integer denoting number of black shapes.
+
+
+
+Example Input
+Input 1:
+
+ A = [ [X, X, X], [X, X, X], [X, X, X] ]
+Input 2:
+
+ A = [ [X, O], [O, X] ]
+
+
+Example Output
+Output 1:
+
+ 1
+Output 2:
+
+ 2
+
+
+///////////////////dfs////////////////////
+public class Solution {
+    int[] dirx = {0,0,1,-1};
+    int[] diry = {1,-1,0,0};
+    public int black(ArrayList<String> A) {
+        boolean[][] vis = new boolean[A.size()][A.get(0).length()];
+        int ans = 0;
+        for(int i=0; i<A.size(); i++)
+        {
+            for(int j=0; j<A.get(0).length(); j++)
+            {
+                if(vis[i][j] == false && A.get(i).charAt(j) == 'X')
+                {  vis[i][j]=true;
+                    ans = ans+1; // counts the discovery of new untouched cell
+                    dfs(i, j, vis, A); //traverse all the connected cells to form the island and updates the vis array
+                }
+            }
+        }
+        return ans;
+
+    }
+        void dfs(int i, int j, boolean[][] vis, ArrayList<String> A)
+    {
+        for(int d=0; d<dirx.length; d++)
+        {
+            int x = i + dirx[d];
+            int y = j + diry[d];
+
+            if(x >= 0 && y >= 0 && x < A.size() && y < A.get(0).length()
+               && vis[x][y] == false && A.get(x).charAt(y) == 'X')
+            {
+                vis[x][y] = true;
+                dfs(x, y, vis, A);
+            }
+        }
+    }
+}
+///////////////////BFS////////////////////////
