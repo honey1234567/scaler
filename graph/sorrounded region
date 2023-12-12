@@ -1,0 +1,147 @@
+Problem Description
+Given a 2-D board A of size N x M containing 'X' and 'O', capture all regions surrounded by 'X'.
+
+A region is captured by flipping all 'O's into 'X's in that surrounded region.
+
+
+
+Problem Constraints
+1 <= N, M <= 1000
+
+
+
+Input Format
+First and only argument is a N x M character matrix A.
+
+
+
+Output Format
+Return nothing. Make changes to the the input only as matrix is passed by reference.
+
+
+
+Example Input
+Input 1:
+
+ A = [ 
+       [X, X, X, X],
+       [X, O, O, X],
+       [X, X, O, X],
+       [X, O, X, X] 
+     ]
+Input 2:
+
+ A = [
+       [X, O, O],
+       [X, O, X],
+       [O, O, O]
+     ]
+
+
+Example Output
+Output 1:
+
+ After running your function, the board should be:
+ A = [
+       [X, X, X, X],
+       [X, X, X, X],
+       [X, X, X, X],
+       [X, O, X, X]
+     ]
+Output 2:
+
+ After running your function, the board should be:
+ A = [
+       [X, O, O],
+       [X, O, X],
+       [O, O, O]
+     ]
+
+
+Example Explanation
+Explanation 1:
+
+ O in (4,2) is not surrounded by X from below.
+Explanation 2:
+
+ No O's are surrounded
+//////////////////////////////////
+public class Solution {
+     boolean[][] visited;
+       int[] dr = {-1,1,0,0};
+        int[] dc = {0,0,1,-1};
+    
+
+     //check all 4 region if all 'O' then make it 'V' 
+    // at last travel and convert all 'V' to 'o' and 'o' to 'X';
+    public void solve(ArrayList<ArrayList<Character>> a) {
+        int rows = a.size();
+        int col = a.get(0).size();
+        visited = new boolean[rows][col];
+             // visit each node of the matrix border
+        // and do the dfs
+   if(rows>1 && col >1){
+
+      for (int i = 0; i < rows; i++) {
+          
+            if(a.get(i).get(0) == 'O'){
+                a.get(i).set(0,'V');
+                     visited[i][0] = true;
+                          dfs(i,0,a);
+            }
+            if(a.get(i).get(col-1) == 'O'){
+                a.get(i).set(col-1,'V');
+                     visited[i][col-1] = true;
+                          dfs(i,col-1,a);
+            }
+           
+        }
+        for (int i = 0; i < col; i++) {
+                 if(a.get(0).get(i) == 'O'){
+                     a.get(0).set(i,'V');
+                     visited[0][i] = true;
+                          dfs(0,i,a);
+            }
+                    if(a.get(rows-1).get(i) == 'O'){
+                        a.get(rows-1).set(i,'V');
+                     visited[rows-1][i] = true;
+                          dfs(rows-1,i,a);
+            }
+       
+        }
+        //conversion after dfs
+      for (ArrayList<Character> characters : a) {
+            for (int j = 0; j < col; j++) {
+                if (characters.get(j) == 'O') {
+                    characters.set(j, 'X');
+                }
+            }
+        }
+        for (ArrayList<Character> characters : a) {
+            for (int j = 0; j < col; j++) {
+                if (characters.get(j) == 'V') {
+                    characters.set(j, 'O');
+                }
+            }
+        }
+   }
+    }
+        private boolean isValid(int r, int c,ArrayList<ArrayList<Character>> a) {
+        boolean isValidIndex =  r>=0 && c>=0 && r<a.size() && c<a.get(0).size();
+        return isValidIndex && !visited[r][c] && a.get(r).get(c)=='O';
+    }
+        void dfs(int r, int c,ArrayList<ArrayList<Character>> a){
+      
+     
+        
+
+        for (int i = 0; i < 4; i++) {
+         if(isValid(r+dr[i],c+dc[i],a)){
+             visited[r+dr[i]][c+dc[i]]= true;
+        a.get(r+dr[i]).set(c+dc[i],'V');
+          dfs(r+dr[i],c+dc[i],a);
+         }
+      
+        }
+    }
+}
