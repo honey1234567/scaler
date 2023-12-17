@@ -1,0 +1,104 @@
+Write a program to solve a Sudoku puzzle by filling the empty cells. Empty cells are indicated by the character '.' You may assume that there will be only one unique solution.
+
+
+
+A sudoku puzzle,
+
+
+
+and its solution numbers marked in red.
+
+
+
+Problem Constraints
+N = 9
+
+
+Input Format
+First argument is an array of array of characters representing the Sudoku puzzle.
+
+
+Output Format
+Modify the given input to the required answer.
+
+
+Example Input
+Input 1:
+
+A = [[53..7....], [6..195...], [.98....6.], [8...6...3], [4..8.3..1], [7...2...6], [.6....28.], [...419..5], [....8..79]]
+
+
+Example Output
+Output 1:
+
+[[534678912], [672195348], [198342567], [859761423], [426853791], [713924856], [961537284], [287419635], [345286179]]
+////////////////////////////////////////////////////////////////////
+import java.util.*;
+
+public class Solution {
+    public void solveSudoku(char[][] A) {
+        Cell cell =findNextEmpty(A,8,8);
+        if(cell.row==-1 && cell.col==-1){
+             fillSudoku(A,-1,-1);
+        }
+        fillSudoku(A,cell.row,cell.col);
+        
+    }
+    public Cell findNextEmpty(char[][]A,int i,int j){
+        while(A[i][j] != '.' ){
+            j=j-1;
+            if(j<0){
+               j=8;
+               i=i-1;
+            }
+            if(i<0) return new Cell(-1,-1);
+        }
+        return new Cell(i,j);
+    }
+    boolean isValid(char[][] A,int row,int col,char k){
+           for(int i=0;i<9;i++){
+               if(A[row][i]==k) return false;
+           }
+                  for(int i=0;i<9;i++){
+               if(A[i][col]==k) return false;
+           }
+           //box validation
+           int sr = (row/3)*3;
+           int sc = (col/3)*3;
+            int rowlastIndex = sr + 3;
+        int colLastIndex = sc + 3;
+           for(int i=0;i<3;i++){
+                for(int j=0;j<3;j++){
+                //      if((sr+i)>A.length || (sc+j)>A[0].length){
+                //       return false;
+                //   }
+                  // if((sr+i)>=A.length || (sc+j)>=A[0].length) continue;
+                  
+                  if(A[sr+i][sc+j]==k){
+                      return false;
+                  }
+                }
+           }
+           return true;
+    }
+    boolean fillSudoku(char[][] A,int i,int j){
+        if(i==-1 && j==-1) return true;
+        for(int k=1;k<=9;k++){
+            if(isValid(A,i,j,(char)('0'+k))){
+                A[i][j]=(char)('0'+k);
+                Cell cell =findNextEmpty(A,i,j);
+                if(fillSudoku(A,cell.row,cell.col)==true) return true;
+                A[i][j]='.';
+            }
+        }
+        return false;
+    }
+}
+class Cell{
+    int row;
+    int col;
+    Cell(int r,int c){
+        this.row=r;
+        this.col=c;
+    }
+}
