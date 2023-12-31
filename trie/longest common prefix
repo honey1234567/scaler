@@ -1,0 +1,65 @@
+https://leetcode.com/problems/longest-common-prefix/description/
+class Solution {
+    class Trie{
+        char ch;
+        Trie child[];
+        int wc;
+        int charcount;
+        Trie(char ch){
+          this.ch = ch;
+          child = new Trie[26];
+          wc = 0;    
+        }
+    }
+    public String longestCommonPrefix(String[] strs) {
+        if(strs.length==0) return "";
+          Trie root = new Trie('1');
+        for(String s:strs){
+             if(s.length()>0)
+            insertToTrie(s,root);
+            else return "";
+        }
+       return searchInTrie(root,strs);
+        
+    }
+    public void insertToTrie(String s , Trie root){
+          Trie curr = root;
+          curr.wc += 1;
+          char[] chArray = s.toCharArray();
+          for(char c:chArray){
+              int index = c-'a';
+              if(curr.child[index] == null){
+                curr.child[index] = new Trie(c);
+               
+              }
+           
+              curr = curr.child[index];
+              curr.wc += 1;
+                      
+          } 
+          
+    }
+    public String searchInTrie(Trie root,String[] strs){
+        StringBuffer str = new StringBuffer();
+        Trie curr = root;
+        int i = 0;
+        while(curr != null){
+            char ch = curr.ch;
+        
+          if(curr.wc != strs.length) break;
+             if(i != 0)
+          str.append(ch);
+          i++;
+         int nullChildCount = 0;
+          for(Trie child:curr.child){
+              if(child != null) curr = child;
+               else{
+                   nullChildCount++;
+               }
+          }
+          if(nullChildCount ==26) break;
+            // if(curr.ch == ch) break;
+        }
+        return str.toString();
+    }
+}
