@@ -1,0 +1,57 @@
+import java.util.*;
+
+
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+                         int n;
+       Scanner sc =  new Scanner(System.in);
+       n=sc.nextInt();//no of nodes
+       ArrayList<ArrayList<Pair>> al = new ArrayList<>();
+       int max = Integer.MIN_VALUE;
+       for(int i=1;i<=n;i++){
+         int v = sc.nextInt();
+        
+         max= Math.max(max,v);
+         }
+         for(int i=0;i<=max;i++){
+             al.add(new ArrayList<Pair>());
+         }
+         int e = sc.nextInt();
+         for(int i=0;i<e;i++){
+            int u = sc.nextInt();
+            int v = sc.nextInt();
+            int t = sc.nextInt();
+             al.get(u).add(new Pair(v,t));
+         }
+         int a = sc.nextInt();
+         int b = sc.nextInt();
+         int[] dis = new int[max+1];
+         Arrays.fill(dis,Integer.MAX_VALUE);
+         dis[a] =0;
+        PriorityQueue<Pair> pq  = new PriorityQueue<>((i,j)->i.wt-j.wt);
+     
+         
+        pq.add(new Pair(a,0));
+        while(!pq.isEmpty()){
+            Pair mn = pq.remove();
+            if(mn.wt>dis[mn.u]) continue;
+            for(Pair v:al.get(mn.u)){
+                if(dis[v.u]>dis[mn.u]+v.wt){
+                    dis[v.u] = dis[mn.u] + v.wt;
+                    pq.add(new Pair(v.u, dis[v.u]));
+                }
+            }
+        }
+       System.out.println(dis[b]);
+
+
+    }
+static class Pair{
+    int u;
+    int wt;
+    Pair(int u,int wt){
+        this.u = u;
+        this.wt = wt;
+    }
+}
+}
