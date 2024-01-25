@@ -1,0 +1,79 @@
+
+get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
+set(key, value) - Set or insert the value if the key is not already present. When the cache reaches its capacity, it should invalidate the least recently used item before inserting the new item.
+The LRU Cache will be initialized with an integer corresponding to its capacity. Capacity indicates the maximum number of unique keys it can hold at a time.
+public class Solution {
+    int capacity;
+    Node head,tail;
+    HashMap<Integer,Node> map;
+    
+    public Solution(int capacity) {
+        this.capacity= capacity;
+        map = new HashMap<>();
+        head=new Node(0,0);
+        tail = new Node(0,0);
+        head.next = tail;
+        tail.prev = head;
+    }
+    
+    private void addNode(Node node) {
+        node.next = head.next;
+        head.next = node;
+        node.prev = head;
+        node.next.prev = node;
+    }
+    
+        public void removeNode(Node node){//insert at begining
+        Node temp = node.next;
+        node.prev.next = temp;
+        temp.prev = node.prev;
+    }
+    
+    public int get(int key) {
+        if(map.containsKey(key)){
+             Node node = map.get(key);
+            removeNode(node);
+           addNode(node);
+
+
+            return node.val;
+  
+        }
+        return -1;
+    }
+    
+    public void set(int key, int value) {
+        //cases- capcaty full,not full,key already exist
+        Node node = new Node(key,value);
+        if(map.containsKey(key)){
+            Node temp = map.get(key);
+            removeNode(temp);
+            addNode(node);
+        }
+        else{
+            if(capacity == map.size()){
+                   Node temp = tail.prev;
+                removeNode(temp);
+                map.remove(temp.key);
+                //capacity--;
+
+            }
+                 addNode(node);
+                // capacity++;
+        }
+        map.put(key,node);
+        
+    }
+}
+class Node{
+    int val;
+    int key;
+    public Node next;
+    public Node prev;
+    public Node(int key,int val){
+        this.key = key;
+        this.val = val;
+        next=null;
+        prev = null;
+    }
+}
