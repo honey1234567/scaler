@@ -1,5 +1,7 @@
 ## quesion - compute ncrmodp
 
+d-1%p = d^(p-2)%p calculate it using fast exponentiation and keep doing mod p everytime
+
 public class Solution {
  public int solve(int A, int B, int C) {
         int nfactorial = factorial(A,C);
