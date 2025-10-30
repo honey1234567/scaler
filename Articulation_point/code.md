@@ -102,3 +102,9 @@ public class ArticulationPoints {
     }
 }
 <img width="451" height="699" alt="image" src="https://github.com/user-attachments/assets/b9ac013b-154b-494e-a26c-2e05605cc0b1" />
+
+## Bridges
+
+<img width="582" height="273" alt="image" src="https://github.com/user-attachments/assets/2ebf3db4-d18e-49ef-9567-c4befc45cea3" />
+
+<img width="628" height="427" alt="image" src="https://github.com/user-attachments/assets/da5b8067-58a0-4a42-b5e6-5d72a74860fd" />
