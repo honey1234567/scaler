@@ -2,6 +2,8 @@ https://neetcode.io/problems/anagram-groups/solution
 
 https://neetcode.io/problems/top-k-elements-in-list/solution
 
+https://neetcode.io/problems/string-encode-and-decode/solution
+
 Here’s a compact **Java syntax + Data Structures cheat sheet** focused on **competitive programming / coding interviews**.
 
 ---
