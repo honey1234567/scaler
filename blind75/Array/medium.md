@@ -4,6 +4,8 @@ https://neetcode.io/problems/top-k-elements-in-list/solution
 
 https://neetcode.io/problems/string-encode-and-decode/solution
 
+https://neetcode.io/problems/longest-consecutive-sequence/question
+
 Here’s a compact **Java syntax + Data Structures cheat sheet** focused on **competitive programming / coding interviews**.
 
 ---
