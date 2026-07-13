@@ -1,3 +1,5 @@
 https://neetcode.io/problems/invert-a-binary-tree/solution  -  check solution 2 with DFS
 
  https://neetcode.io/problems/depth-of-binary-tree/question?list=blind75
+
+ https://neetcode.io/problems/same-binary-tree/solution
