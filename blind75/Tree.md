@@ -13,3 +13,7 @@ https://neetcode.io/problems/invert-a-binary-tree/solution  -  check solution 2 
  https://neetcode.io/problems/valid-binary-search-tree/solution
 
 https://neetcode.io/problems/kth-smallest-integer-in-bst/solution
+
+uber - copy hld
+
+Google map - https://systemdesignschool.io/problems/google-map/solution
