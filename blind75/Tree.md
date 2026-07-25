@@ -14,6 +14,8 @@ https://neetcode.io/problems/invert-a-binary-tree/solution  -  check solution 2 
 
 https://neetcode.io/problems/kth-smallest-integer-in-bst/solution
 
+https://neetcode.io/problems/serialize-and-deserialize-binary-tree/solution
+
                 https://www.youtube.com/watch?v=lxTGsVXjwvM
 
 
