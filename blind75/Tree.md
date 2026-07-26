@@ -16,7 +16,7 @@ https://neetcode.io/problems/kth-smallest-integer-in-bst/solution
 
 https://neetcode.io/problems/serialize-and-deserialize-binary-tree/solution
 
-https://neetcode.io/problems/binary-tree-from-preorder-and-inorder-traversal/solution - skip last 2 approach
+https://neetcode.io/problems/binary-tree-from-preorder-and-inorder-traversal/solution - skip last 2 approach if u are not able to understand
 
                 https://www.youtube.com/watch?v=lxTGsVXjwvM
 
