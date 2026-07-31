@@ -21,3 +21,10 @@ https://takeuforward.org/data-structure/construct-a-binary-tree-from-inorder-and
                 https://www.youtube.com/watch?v=lxTGsVXjwvM
 
 https://takeuforward.org/data-structure/maximum-sum-path-in-binary-tree
+
+
+<img width="818" height="522" alt="image" src="https://github.com/user-attachments/assets/37248089-1ea8-4ffb-9da6-c3c28d7b390f" />
+
+The median is the middle value in a sorted list of integers. For lists of even length, there is no middle value, so the median is the mean of the two middle values.
+
+https://neetcode.io/problems/find-median-in-a-data-stream/solution
