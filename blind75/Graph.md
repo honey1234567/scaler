@@ -9,3 +9,5 @@ https://neetcode.io/problems/course-schedule/solution
 https://neetcode.io/problems/valid-tree/question?list=blind75
 
 https://neetcode.io/problems/count-connected-components/solution
+
+https://neetcode.io/problems/foreign-dictionary/solution - alien dictionsry see striver video and top sort from here
