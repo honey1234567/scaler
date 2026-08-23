@@ -793,3 +793,268 @@ Then each case is just the normal House Robber problem, with no flag needed.
 So the direct answer to your question is:
 
 Yes, `dfs(1,true)` wrongly prevents picking the last house after skipping house 0. Therefore `dfs(1,false)` is necessary to explore the separate scenario where house 0 is excluded and the last house is allowed.
+
+You're right to question this. The key is that **`flag || i == 0` is actually what makes the flag become `true` when house 0 is reached through the `dfs(1, false)` path.**
+
+Let's look carefully.
+
+The code is:
+
+```java
+return Math.max(
+    dfs(i + 1, flag, nums),
+    nums[i] + dfs(i + 2, flag || i == 0, nums)
+);
+```
+
+There are **two different starting calls**:
+
+```java
+dfs(0, true, nums)
+dfs(1, false, nums)
+```
+
+So `flag` is **not always true**.
+
+---
+
+## 1. First call: `dfs(0, true)`
+
+Here:
+
+```text
+flag = true
+i = 0
+```
+
+When we rob house 0:
+
+```java
+flag || i == 0
+```
+
+becomes:
+
+```text
+true || true
+= true
+```
+
+So yes, in this path the `i == 0` part is redundant.
+
+Even:
+
+```java
+dfs(i + 2, true, nums)
+```
+
+would work for this particular path.
+
+---
+
+## 2. But look at the second starting call
+
+The other call is:
+
+```java
+dfs(1, false, nums)
+```
+
+Here:
+
+```text
+i = 1
+flag = false
+```
+
+Suppose the recursion eventually reaches house 0? **It cannot.**
+
+Because we start at `i=1` and only move forward:
+
+```text
+1 → 2 → 3 → 4
+```
+
+So `i == 0` will never happen in this second call.
+
+Therefore:
+
+```java
+flag || i == 0
+```
+
+is also effectively just `flag` in the second call.
+
+---
+
+# So your question reveals something important
+
+In **this exact code**, you're correct:
+
+```java
+flag || i == 0
+```
+
+is actually unnecessary.
+
+Why?
+
+Because:
+
+### First DFS
+
+```java
+dfs(0, true)
+```
+
+already has:
+
+```text
+flag = true
+```
+
+so:
+
+```text
+true || i == 0
+```
+
+is always true.
+
+### Second DFS
+
+```java
+dfs(1, false)
+```
+
+never reaches:
+
+```text
+i == 0
+```
+
+because it only moves forward.
+
+Therefore:
+
+```java
+flag || i == 0
+```
+
+can simply be:
+
+```java
+flag
+```
+
+---
+
+# We can simplify the code
+
+Original:
+
+```java
+nums[i] + dfs(i + 2, flag || i == 0, nums)
+```
+
+can become:
+
+```java
+nums[i] + dfs(i + 2, flag, nums)
+```
+
+So:
+
+```java
+public class Solution {
+    public int rob(int[] nums) {
+        if (nums.length == 1) return nums[0];
+
+        return Math.max(
+            dfs(0, true, nums),
+            dfs(1, false, nums)
+        );
+    }
+
+    private int dfs(int i, boolean flag, int[] nums) {
+        if (i >= nums.length || (flag && i == nums.length - 1))
+            return 0;
+
+        return Math.max(
+            dfs(i + 1, flag, nums),
+            nums[i] + dfs(i + 2, flag, nums)
+        );
+    }
+}
+```
+
+The `flag || i == 0` doesn't add anything here.
+
+---
+
+## But there is an even bigger conceptual issue
+
+The variable name `flag` is misleading.
+
+Because in:
+
+```java
+dfs(0, true)
+```
+
+`true` really means:
+
+> "The last house must be excluded."
+
+And:
+
+```java
+dfs(1, false)
+```
+
+means:
+
+> "The last house is allowed."
+
+So I would think of it as:
+
+```text
+excludeLast
+```
+
+instead of:
+
+```text
+flag
+```
+
+Then the code becomes much easier to understand:
+
+```java
+dfs(0, true)   // consider 0 → exclude last
+dfs(1, false)  // skip 0 → allow last
+```
+
+And importantly:
+
+```text
+dfs(0,true)
+   |
+   +-- skip 0 → dfs(1,true)
+   |                |
+   |                └── last forbidden
+   |
+   +-- rob 0 → dfs(2,true)
+                    |
+                    └── last forbidden
+
+
+dfs(1,false)
+   |
+   +-- ...
+   |
+   └── last allowed
+```
+
+So **yes: your observation is correct. `flag || i == 0` is redundant in this implementation.** The two initial DFS calls already establish the required flag values.
+
