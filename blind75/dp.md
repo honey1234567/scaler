@@ -7,3 +7,5 @@ https://www.geeksforgeeks.org/dsa/longest-palindromic-substring/-   see odd even
 https://neetcode.io/problems/palindromic-substrings/solution - see approach 2,3,4
 
 https://neetcode.io/problems/decode-ways/solution -  see all approach
+
+https://neetcode.io/problems/coin-change/solution -  see all approach till DP and leave BFS
