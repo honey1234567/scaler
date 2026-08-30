@@ -10,6 +10,8 @@ https://neetcode.io/problems/decode-ways/solution -  see all approach
 
 https://neetcode.io/problems/coin-change/solution -  see all approach till DP and leave BFS
 
+https://neetcode.io/problems/word-break/solution - do except 4 and 6
+
 # maximum product subarray 
 
 https://neetcode.io/problems/maximum-product-subarray/solution - all approach
