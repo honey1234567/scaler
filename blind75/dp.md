@@ -16,6 +16,8 @@ https://neetcode.io/problems/longest-increasing-subsequence/solution - see appro
 
 https://takeuforward.org/data-structure/grid-unique-paths-dp-on-grids-dp8
 
+https://neetcode.io/problems/longest-common-subsequence/solution -  till approach 4
+
 # maximum product subarray 
 
 https://neetcode.io/problems/maximum-product-subarray/solution - all approach
